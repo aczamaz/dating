@@ -1,0 +1,14 @@
+.footer
+{
+    background-color: #ECCACA;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+}
+.footer__phone
+{
+    margin-right: 20px;
+    color:#BB745F;
+    font-size: 14px;
+}

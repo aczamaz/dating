@@ -1,0 +1,27 @@
+.menu-top
+{
+    list-style: none;
+    padding:0px;
+    margin:0px;
+    display: flex;
+    max-width: 1000px;
+    width:100%;
+    justify-content:stretch;
+}
+.menu-top__item
+{
+    height: 60px;
+    max-width: 250px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow:1;
+    box-sizing: border-box;
+    background-color: #FFEAEA;
+    cursor:pointer;
+}
+.menu-top__item_active
+{
+    background-color:inherit;
+}

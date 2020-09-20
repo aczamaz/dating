@@ -1,0 +1,33 @@
+.header
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 20px;
+    font-family: 'Roboto';
+    background-color: #ECCACA;
+    color:white;
+}
+.header__logo
+{
+    font-size:23px;
+}
+
+.header-buttons button
+{
+    background-color: #E98E8E;
+    color:#FBDADA;
+    border:none;
+    font-size:16px;
+    padding:5px 10px;
+    border-radius: 3px;
+    margin-left:5px;
+}
+.header-buttons button:focus
+{
+    outline: 0px;
+}
+.header-buttons button:hover
+{
+    cursor: pointer;
+    background-color: #e08181;
+}
