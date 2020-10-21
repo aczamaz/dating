@@ -1,16 +1,16 @@
 import React from 'react';
 
 import Page from '../../containers/page';
-import './dialogs.css';
+import './dialog.css';
 import MenuTop from '../../blocks/menu-top';
-import DialogsList from '../../blocks/dialogs-list';
+import DialogsDetail from '../../blocks/dialogs-detail';
 
-const Dialogs = (props) => {
+const Dialog = (props) => {
     return (
         <Page>
             <MenuTop page="dialogs" />
-            <DialogsList />
+            <DialogsDetail />
         </Page>
     )
 }
-export default Dialogs;
+export default Dialog;

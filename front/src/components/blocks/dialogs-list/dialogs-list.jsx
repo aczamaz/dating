@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './dialog-list.css';
+import './dialogs-list.css';
 import MessagesService from '../../../services/messages-service.jsx'
-export default class DialogList extends Component
+export default class DialogsList extends Component
 {
     state = {
         dialogs:[]

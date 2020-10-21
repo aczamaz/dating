@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import './menu-top.css';
 import { ReactComponent as IconProfile} from './icons/profile.svg';
 import { ReactComponent as IconMessages } from './icons/messages.svg';
@@ -17,7 +17,7 @@ const MenuTop = (props) =>
         },
         {
             id: 2,
-            name: "messages",
+            name: "dialogs",
             content: <IconMessages />
         },
         {
@@ -37,7 +37,9 @@ const MenuTop = (props) =>
                 items.map((item)=>{
                     return(
                         <li key={item.id} className={`menu-top__item ${item.name === page?'menu-top__item_active':''}`}>
-                            {item.content}
+                            <Link to={`/${item.name}/`} className={`menu-top__item ${item.name === page ? 'menu-top__item_active' : ''}`}>
+                                {item.content}
+                            </Link>
                         </li>
                     )
                 })
