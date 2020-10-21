@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '../blocks/footer/footer';
 import Header from '../blocks/header';
 import Profile from '../pages/profile';
+import Dialogs from '../pages/dialogs';
 import './app.css';
 
 const App = () =>
@@ -9,7 +10,7 @@ const App = () =>
     return(
         <div className="app">
             <Header/>
-            <Profile/>
+            <Dialogs/>
             <Footer/>
         </div>
     )

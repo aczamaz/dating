@@ -1,0 +1,45 @@
+.dialog-list
+{
+    max-width: 1000px;
+    width: 100%;
+    margin-top:30px;
+    height: 540px;
+    overflow-y: scroll;
+}
+.dialog-list::-webkit-scrollbar
+{
+     scrollbar-arrow-color: #fff; /* Цвет стрелок */
+    scrollbar-base-color: blue; /* Цвет полосы прокрутки */
+}
+.dialog-list__item
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-height: 120px;
+    height: 100%;
+    background: rgba(236, 202, 202, 0.15);
+}
+.dialog-list__avatar
+{
+    width: 85px;
+    height: 70px;
+    object-fit: cover;
+    margin-left:70px;
+}
+.dialog-list_text-style
+{
+    line-height: 18.75px;
+    font-size: 16px;
+}
+.dialog-list__name
+{
+    color:#D0B8B8;
+    margin-left: 25px;
+}
+.dialog-list__message
+{
+    color:#A87B7B;
+    margin-left: 10px;
+}

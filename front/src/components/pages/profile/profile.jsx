@@ -9,10 +9,8 @@ const Profile = (props) =>
 {
     return(
         <Page>
-            <div className="profile">
-                <MenuTop page="profile"/>
-                <ProfileInfo/>
-            </div>
+            <MenuTop page="profile"/>
+            <ProfileInfo/>
         </Page>
     )
 }

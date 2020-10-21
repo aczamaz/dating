@@ -11,18 +11,22 @@ const MenuTop = (props) =>
     const {page} = props;
     const items = [
         {
+            id:1,
             name:"profile",
             content: <IconProfile />
         },
         {
+            id: 2,
             name: "messages",
             content: <IconMessages />
         },
         {
+            id: 3,
             name: "dating",
             content: <IconHeart />
         },
         {
+            id: 4,
             name: "search",
             content: <IconSearch />
         },
@@ -32,7 +36,7 @@ const MenuTop = (props) =>
             {
                 items.map((item)=>{
                     return(
-                        <li className={`menu-top__item ${item.name === page?'menu-top__item_active':''}`}>
+                        <li key={item.id} className={`menu-top__item ${item.name === page?'menu-top__item_active':''}`}>
                             {item.content}
                         </li>
                     )
