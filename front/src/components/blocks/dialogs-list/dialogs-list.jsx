@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './dialogs-list.css';
 import MessagesService from '../../../services/messages-service.jsx'
 export default class DialogsList extends Component
@@ -18,7 +19,7 @@ export default class DialogsList extends Component
         return dialogs.map(
             ({ avatarSrc, name, message, id }) => {
                 return (
-                    <div key={id} className="dialog-list__item">
+                    <Link to={`/dialogs/${id}`} key={id} className="dialog-list__item">
                         <img className="dialog-list__avatar" src={avatarSrc} alt="" />
                         <div className="dialog-list__name dialog-list_text-style">
                             {name}:
@@ -26,7 +27,7 @@ export default class DialogsList extends Component
                         <div className="dialog-list__message dialog-list_text-style">
                             {message}
                         </div>
-                    </div>
+                    </Link>
                 )
             }
         )
