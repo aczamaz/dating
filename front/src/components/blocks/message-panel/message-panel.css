@@ -1,0 +1,35 @@
+.message-panel
+{
+    max-width: 1000px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+.message-panel__input
+{
+    max-width: 800px;
+    height: 45px;
+    width: 100%;
+    border: 1px solid rgba(233, 142, 142, 0.7);
+    resize:none;
+}
+.message-panel__button
+{
+    margin-left: 25px;
+    max-width: 175px;
+    width: 100%;
+    color:#fff;
+    background-color: #E98E8E;
+    border:none;
+    font-size: 15px;
+}
+.message-panel__button:focus
+{
+    outline: 0px;
+}
+.message-panel__button:hover
+{
+    cursor: pointer;
+    background-color: #e08181;
+}
