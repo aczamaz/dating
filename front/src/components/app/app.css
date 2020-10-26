@@ -7,3 +7,12 @@ body
 {
     margin: 0px;
 }
+.bnt-hover-active:focus
+{
+    outline: 0px;
+}
+.bnt-hover-active:hover
+{
+    cursor: pointer;
+    background-color: #ecbebe;
+}

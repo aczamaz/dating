@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { ReactComponent as MessageIcon } from './message.svg';
 import { ReactComponent as ArrowIcon } from './arrow.svg';
 import './dating-block.css';
-import ProfileInfo from '../profile-info';
+import ProfileWithSend from '../profile-with-send';
 export default class DatingBlock extends Component {
     render() {
         return (
@@ -10,12 +9,7 @@ export default class DatingBlock extends Component {
                 <button className="button-switch bnt-hover-active button-switch__reverse">
                     <ArrowIcon />
                 </button>
-                <div className="profile-conteiner">
-                    <ProfileInfo/>
-                    <button className="send-message bnt-hover-active">
-                        <MessageIcon/>
-                    </button>
-                </div>
+                <ProfileWithSend/>
                 <button className="button-switch bnt-hover-active">
                     <ArrowIcon/>
                 </button>
