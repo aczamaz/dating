@@ -6,6 +6,7 @@ import Profile from '../pages/profile';
 import Dialogs from '../pages/dialogs';
 import Dialog from '../pages/dialog';
 import Dating from '../pages/dating'
+import Search from '../pages/search';
 import './app.css';
 
 const App = () =>
@@ -20,6 +21,7 @@ const App = () =>
                     <Route path="/dialogs/:dialog" component={Dialog} />
                     <Route path="/dialogs/" component={Dialogs} exact />
                     <Route path="/dating/" component={Dating} exact />
+                    <Route path="/search/" component={Search} exact />
                 </Switch>
             </Router>
             <Footer/>
