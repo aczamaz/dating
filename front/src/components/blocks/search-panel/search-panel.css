@@ -18,6 +18,10 @@
     width: 100%;
     color: #B38A8A;
 }
+.search-panel__input:focus
+{
+    outline: 0px;
+}
 .search-panel__name-input
 {
     max-width: 140px;
@@ -37,5 +41,5 @@
     max-width: 100px;
     height: 20px;
     -webkit-appearance: none;
-    background: url('data:image/svg+xml,<svg width="10" height="13" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.17813 9.63582L12.8668 1.08791C13.1485 0.581208 13.0227 0 12.1066 0L0.905128 0C-0.00454396 0 -0.166522 0.623481 0.145386 1.08792L5.83405 9.63583C6.19004 10.1284 6.85093 10.1143 7.17813 9.63582ZM1.27875 0.901136L11.7334 0.901136L6.50608 9.01186L1.27875 0.901136Z" fill="rgb(240, 176, 176)"/></svg>') no-repeat 97%;
+    background: url('data:image/svg+xml,<svg width="10" height="13" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.17813 9.63582L12.8668 1.08791C13.1485 0.581208 13.0227 0 12.1066 0L0.905128 0C-0.00454396 0 -0.166522 0.623481 0.145386 1.08792L5.83405 9.63583C6.19004 10.1284 6.85093 10.1143 7.17813 9.63582ZM1.27875 0.901136L11.7334 0.901136L6.50608 9.01186L1.27875 0.901136Z" fill="rgb(240, 176, 176)"/></svg>') no-repeat 97% white;
 }

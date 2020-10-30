@@ -1,0 +1,33 @@
+.search-list
+{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top:25px;
+    margin-bottom: 130px;
+    height: 405px;
+    overflow-y: auto;
+}
+.search-list::-webkit-scrollbar { width: 0; }
+.search-list__img
+{
+    width:100px;
+    height: 100px;
+    object-fit: cover;
+}
+.search-list__item
+{
+    margin-right: 25px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+.search-list__name
+{
+    font-family: 'Roboto';
+    color: #A87B7B;
+    font-size: 14px;
+    text-align: center;
+    line-height: 14px;
+    margin-top:4px;
+}
