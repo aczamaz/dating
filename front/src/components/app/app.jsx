@@ -7,6 +7,8 @@ import Dialogs from '../pages/dialogs';
 import Dialog from '../pages/dialog';
 import Dating from '../pages/dating'
 import Search from '../pages/search';
+import SearchDetail from '../pages/search-detail';
+import Autorization from '../blocks/autorization';
 import './app.css';
 
 const App = () =>
@@ -22,8 +24,10 @@ const App = () =>
                     <Route path="/dialogs/" component={Dialogs} exact />
                     <Route path="/dating/" component={Dating} exact />
                     <Route path="/search/" component={Search} exact />
+                    <Route path="/search/:id" component={SearchDetail}/>
                 </Switch>
             </Router>
+            <Autorization show={true} />
             <Footer/>
         </div>
     )

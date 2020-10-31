@@ -1,11 +1,18 @@
 import React from 'react';
 
+import Page from '../../containers/page';
+import MenuTop from '../../blocks/menu-top';
+import SearchDetailBlock from '../../blocks/search-detail-block';
 import './search-detail.css';
+
+
 const SearchDetail = () =>
 {
     return(
-       <div className='search-detail'>
-       </div>
+        <Page>
+            <MenuTop page="search" />
+            <SearchDetailBlock/>
+        </Page>
     );
 };
 

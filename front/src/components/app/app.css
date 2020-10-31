@@ -11,6 +11,10 @@ body
 {
     outline: 0px;
 }
+.focus-outline-none
+{
+    outline: 0px;
+}
 .bnt-hover-active:hover
 {
     cursor: pointer;

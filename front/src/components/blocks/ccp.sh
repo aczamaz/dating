@@ -30,8 +30,8 @@ echo ""
 echo "const ${COMPONENT_NAME} = () =>" >> $PATH_COMPONENT_JS;
 echo "{" >> $PATH_COMPONENT_JS;
 echo "    return(" >> $PATH_COMPONENT_JS;
-echo "       <div className='${FILES_NAME}'>" >> $PATH_COMPONENT_JS;
-echo "       </div>" >> $PATH_COMPONENT_JS;
+echo "        <div className='${FILES_NAME}'>" >> $PATH_COMPONENT_JS;
+echo "        </div>" >> $PATH_COMPONENT_JS;
 echo "    );" >> $PATH_COMPONENT_JS;
 echo "};" >> $PATH_COMPONENT_JS;
 echo "" >> $PATH_COMPONENT_JS;

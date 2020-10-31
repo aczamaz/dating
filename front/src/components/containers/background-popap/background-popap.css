@@ -1,0 +1,11 @@
+.background-popap
+{
+    z-index: 1;
+    background-color: rgba(158, 150, 150, 0.404);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
