@@ -1,0 +1,27 @@
+.form-input
+{
+    width:100%;
+    height: 30px;
+    border: 1px solid #ECCACA;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-size: 20px;
+}
+.form-input:not(:last-of-type)
+{
+    margin-bottom: 20px;
+}
+.form-input:focus
+{
+    outline:0px;
+}
+.form-input::placeholder
+{
+    color:#ECCACA;
+    font-size: 20px;
+}
+.error
+{
+    border-color: rgb(254,170,170);
+    background-color: #ffe4e4;
+}

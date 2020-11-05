@@ -1,0 +1,28 @@
+.form-auth
+{
+    margin: 200px auto;
+    background-color: #FFF5F5;
+    max-width: 350px;
+    width: 100%;
+    z-index: 20;
+    cursor: default;
+    font-family: inherit;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom:70px;
+}
+.form-auth__title
+{
+    color: #A87B7B;
+    font-size: 40px;
+    display: inline-block;
+}
+.form-auth__inner
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 250px;
+    margin: 0 auto;
+    margin-top: 12px;
+}

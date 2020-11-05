@@ -15,8 +15,8 @@ const App = () =>
 {
     return(
         <div className="app">
-            <Header/>
             <Router>
+            <Header/>
                 <Switch>
                     <Route path="/profile/" component={Profile}/>
                     <Route path="/" component={Profile} exact/>
@@ -26,9 +26,9 @@ const App = () =>
                     <Route path="/search/" component={Search} exact />
                     <Route path="/search/:id" component={SearchDetail}/>
                 </Switch>
-            </Router>
             <Autorization show={true} />
             <Footer/>
+            </Router>
         </div>
     )
 }

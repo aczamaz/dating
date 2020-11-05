@@ -1,21 +1,29 @@
 import React from 'react';
+
 import BackgroundPopap from '../../containers/background-popap';
-import {stopPropagation} from '../../../utils/utils';
+import FormInput from '../../items/form-input';
+import FormButton from '../../items/form-button';
+import FormAuth from '../../containers/form-auth';
+
 import './autorization.css';
+
 const Autorization = ({show}) =>
 {
     return(
         <BackgroundPopap show={show}>
-            <div className='autorization' onClick={(e) => stopPropagation(e)}>
-                <div className='autorization__title'>Войти</div>
-                <form className="autorization-form">
-                    <input type="text" name="login" className="autorization-form__input focus-outline-none" placeholder="логин"/>
-                    <input type="password" name="login" className="autorization-form__input focus-outline-none" placeholder="пароль"/>
-                    <button className="autorization-form__button focus-outline-none">
-                        Войти
-                    </button>
-                </form>
-            </div>
+            <FormAuth title="Войти">
+                <FormInput
+                    type="text"
+                    name="login"
+                    placeholder="логин"
+                />
+                <FormInput
+                    type="password"
+                    name="login"
+                    placeholder="пароль"
+                />
+                <FormButton name="Войти" />
+            </FormAuth>
         </BackgroundPopap>
     );
 };
