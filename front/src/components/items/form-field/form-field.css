@@ -6,6 +6,7 @@
     box-sizing: border-box;
     border-radius: 3px;
     font-size: 20px;
+    color:#e28484;
 }
 .form-field + .form-field
 {
@@ -23,12 +24,16 @@
 
 .form-select--text
 {
-    color:#ECCACA;
+    color:#e28484;
 }
 .form-select--arrow
 {
     appearance: none;
     background: url('./arrow.svg') no-repeat 97% white;
+}
+.form-field option:hover
+{
+     box-shadow: 100px 100px 10px 100px red inset;
 }
 .error
 {

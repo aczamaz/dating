@@ -11,7 +11,7 @@ const FormInput = (props) =>
             (option) =>
             {
                 return (
-                    <option className="form-select" value={option.value} key={option.id}>
+                    <option value={option.value} key={option.id}>
                         {option.name}
                     </option>
                 )
