@@ -8,7 +8,7 @@ import Dialog from '../pages/dialog';
 import Dating from '../pages/dating'
 import Search from '../pages/search';
 import SearchDetail from '../pages/search-detail';
-import Registration from '../blocks/registration';
+import Main from '../pages/main';
 import './app.css';
 
 const App = () =>
@@ -19,7 +19,7 @@ const App = () =>
             <Header/>
                 <Switch>
                     <Route path="/profile/" component={Profile}/>
-                    <Route path="/" component={Profile} exact/>
+                    <Route path="/" component={Main} exact/>
                     <Route path="/dialogs/:dialog" component={Dialog} />
                     <Route path="/dialogs/" component={Dialogs} exact />
                     <Route path="/dating/" component={Dating} exact />
@@ -27,7 +27,6 @@ const App = () =>
                     <Route path="/search/:id" component={SearchDetail}/>
                 </Switch>
             <Footer/>
-            <Registration show={true}/>
             </Router>
         </div>
     )

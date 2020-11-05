@@ -8,6 +8,10 @@
     font-size: 20px;
     color:#e28484;
 }
+input.form-field:last-of-type
+{
+    margin-bottom:30px;
+}
 .form-field + .form-field
 {
     margin-top: 20px;
@@ -30,10 +34,6 @@
 {
     appearance: none;
     background: url('./arrow.svg') no-repeat 97% white;
-}
-.form-field option:hover
-{
-     box-shadow: 100px 100px 10px 100px red inset;
 }
 .error
 {

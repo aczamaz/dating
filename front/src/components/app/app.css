@@ -21,3 +21,6 @@ body
     cursor: pointer;
     background-color: #ecbebe;
 }
+*{
+    box-sizing: border-box;
+}

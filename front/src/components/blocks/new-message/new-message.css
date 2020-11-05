@@ -1,0 +1,27 @@
+.new-message
+{
+    max-width: 600px;
+    widows: 100%;
+    margin: 200px auto;
+    background-color: #FFF5F5;
+}
+.new-message__text
+{
+    max-width: 560px;
+    width: 100%;
+    height: 210px;
+    margin: 20px 20px 0px 20px;
+    resize:none;
+    border: 1px solid #ECCACA;
+    color: #b97272;
+    font-family:inherit;
+    font-size: 15px;
+    border-radius: 3px;
+}
+.new-message__inner
+{
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 13px;
+    padding-bottom: 15px;
+}
