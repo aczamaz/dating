@@ -5,14 +5,17 @@ const ProfileInfo = (props) =>
 {
     const info = [
         {
+            id:1,
             name:"Имя",
             value:"Ацамаз"
         },
         {
+            id:2,
             name: "Возраст",
             value: 26
         },
         {
+            id:3,
             name: "Пол",
             value: "Мужской"
         },
@@ -24,7 +27,7 @@ const ProfileInfo = (props) =>
                 {
                     info.map((line)=>{
                         return(
-                            <div className="profile-info__line">
+                            <div className="profile-info__line" key={line.id}>
                                 <div className="profile-info__name">
                                     {line.name}:
                                 </div>

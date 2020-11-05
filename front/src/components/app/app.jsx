@@ -8,7 +8,7 @@ import Dialog from '../pages/dialog';
 import Dating from '../pages/dating'
 import Search from '../pages/search';
 import SearchDetail from '../pages/search-detail';
-import Autorization from '../blocks/autorization';
+import Registration from '../blocks/registration';
 import './app.css';
 
 const App = () =>
@@ -26,8 +26,8 @@ const App = () =>
                     <Route path="/search/" component={Search} exact />
                     <Route path="/search/:id" component={SearchDetail}/>
                 </Switch>
-            <Autorization show={true} />
             <Footer/>
+            <Registration show={true}/>
             </Router>
         </div>
     )

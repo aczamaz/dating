@@ -1,4 +1,4 @@
-.form-input
+.form-field
 {
     width:100%;
     height: 30px;
@@ -7,21 +7,32 @@
     border-radius: 3px;
     font-size: 20px;
 }
-.form-input:not(:last-of-type)
+.form-field + .form-field
 {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
-.form-input:focus
+.form-field:focus
 {
     outline:0px;
 }
-.form-input::placeholder
+.form-field::placeholder
 {
     color:#ECCACA;
     font-size: 20px;
+}
+
+.form-select--text
+{
+    color:#ECCACA;
+}
+.form-select--arrow
+{
+    appearance: none;
+    background: url('./arrow.svg') no-repeat 97% white;
 }
 .error
 {
     border-color: rgb(254,170,170);
     background-color: #ffe4e4;
 }
+
