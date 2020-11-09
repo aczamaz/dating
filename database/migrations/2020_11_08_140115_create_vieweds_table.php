@@ -33,7 +33,7 @@ class CreateViewedsTable extends Migration
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
-            }git
+            }
         );
     }
 
