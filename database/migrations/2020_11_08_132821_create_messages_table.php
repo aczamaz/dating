@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration
             $table->timestamps();
             $table->bigInteger('sender')->unsigned();
             $table->bigInteger('recipient')->unsigned();
-            $table->string('message');
+            $table->string('message',1000);
         });
 
         Schema::table('messages', function (Blueprint $table)
