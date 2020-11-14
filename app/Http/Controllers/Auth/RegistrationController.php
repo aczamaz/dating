@@ -10,6 +10,6 @@ class RegistrationController extends Controller
 {
     public function registration(RegistrationRequest $request)
     {
-        return $request->json();
+        return response()->json($request);
     }
 }

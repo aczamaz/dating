@@ -32,5 +32,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://dating/"
+  "proxy": "http://dating/",
+  "homepage": "http://dating/front/build/"
 }
