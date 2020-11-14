@@ -19,7 +19,7 @@ const Autorization = ({show}) =>
                 />
                 <FormInput
                     type="password"
-                    name="login"
+                    name="password"
                     placeholder="пароль"
                 />
                 <FormButton name="Войти" />

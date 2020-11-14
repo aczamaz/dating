@@ -45,7 +45,7 @@ const Registration = ({show}) =>
                             {
                                 id: 2,
                                 name: "женский",
-                                value: "m"
+                                value: "f"
                             },
                         ]
                     }
