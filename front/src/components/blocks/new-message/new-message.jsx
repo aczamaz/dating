@@ -2,7 +2,7 @@ import React from 'react';
 
 import BackgroundPopap from '../../containers/background-popap';
 import FormButton from '../../items/form-button';
-import { stopPropagation } from '../../../utils/utils';
+import { stopPropagation } from '../../../utils';
 import './new-message.css';
 const NewMessage = ({show}) =>
 {

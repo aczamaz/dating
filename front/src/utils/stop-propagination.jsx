@@ -2,4 +2,5 @@ function stopPropagation(e)
 {
     e.stopPropagation();
 }
-export { stopPropagation} ;
+
+export default stopPropagation;

@@ -21,6 +21,7 @@ const Autorization = ({show}) =>
                     type="password"
                     name="password"
                     placeholder="пароль"
+                    last={true}
                 />
                 <FormButton name="Войти" />
             </FormAuth>

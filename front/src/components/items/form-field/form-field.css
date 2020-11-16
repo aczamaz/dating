@@ -8,7 +8,7 @@
     font-size: 20px;
     color:#e28484;
 }
-input.form-field:last-of-type
+.form-field--last
 {
     margin-bottom:30px;
 }
@@ -34,6 +34,22 @@ input.form-field:last-of-type
 {
     appearance: none;
     background: url('./arrow.svg') no-repeat 97% white;
+}
+.form-field--file
+{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.form-field--file-label
+{
+    background-color:#e28484;
+    color: white;
+    cursor: pointer;
+    margin-top:0;
 }
 .error
 {

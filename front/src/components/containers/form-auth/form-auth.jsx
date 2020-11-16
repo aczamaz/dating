@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { stopPropagation } from '../../../utils/utils';
+import { stopPropagation } from '../../../utils';
 
 import './form-auth.css';
 const FormAuth = (props) =>

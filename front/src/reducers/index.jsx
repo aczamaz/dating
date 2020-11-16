@@ -1,11 +1,9 @@
-import updateProfile from './update-profile';
-import updateAuth from './update-auth';
+import updateProfileInfo from './update-profile-info';
 
 const reducer = (state, action) => {
 
     return {
-        auth: updateAuth(state, action),
-        profile: updateProfile(state, action)
+        profile: updateProfileInfo(state, action)
     }
 }
 
