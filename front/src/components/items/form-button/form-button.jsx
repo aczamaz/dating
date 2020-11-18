@@ -3,9 +3,9 @@ import React from 'react';
 import './form-button.css';
 const FormButton = (props) =>
 {
-    const {name,onClickEvent} = props;
+    const {name} = props;
     return(
-        <button className="form-button focus-outline-none" onClick={(e) => { e.preventDefault(); onClickEvent()}}>
+        <button className="form-button focus-outline-none">
             {name}
         </button>
     );

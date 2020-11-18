@@ -1,17 +1,10 @@
-const authRegistration = () =>
+const authRegistration = (data) =>
 {
     return{
-        type:'AUTH_REGISTRATION'
-    }
-}
-const setFieldProfile = (field) =>
-{
-    return{
-        type:'SET_FIELD_PROFILE',
-        payload:field
+        type:'AUTH_REGISTRATION',
+        payload:data
     }
 }
 export {
-    authRegistration,
-    setFieldProfile
+    authRegistration
 };

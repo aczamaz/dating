@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { Field  } from 'redux-form';
 import './form-field.css';
 const FormInput = (props) =>
 {
-    const { placeholder, setField, name, type, value, options, last} = props;
+    const { placeholder, name, type, value, options, last} = props;
 
     const clickInputfile = () =>
     {
@@ -11,6 +11,12 @@ const FormInput = (props) =>
     }
 
     const lastElement = last ?'form-field--last':'';
+
+    const UploadFile = ({
+        input: { value: omitValue, ...inputProps },
+        meta: omitMeta,
+        ...props
+    }) => <input type="file" {...inputProps} {...props} />;
 
     switch (type)
     {
@@ -25,38 +31,35 @@ const FormInput = (props) =>
                 }
             )
             return (
-                <select
+                <Field
                     className={`form-field focus-outline-none form-select--text form-select--arrow ${lastElement}`}
                     placeholder={placeholder}
                     name={name}
-                    onChange={(e) => setField(e)}
-                    value={value}
+                    component="select"
                 >
                     { optionsFileds}
-                </select>
+                </Field>
             )
         case 'file':
             return (
                 <label htmlFor={name} className={`form-field focus-outline-none form-field--file-label ${lastElement}`} onClick={() => clickInputfile()}>
                     {value ? value:'Выберите файл'}
-                    <input
+                    <Field
                         type={type}
                         className="form-field--file"
                         name={name}
-                        onChange={(e) => setField(e)}
-                        value={value}
+                        component={UploadFile}
                     />
                 </label>
             );
         default:
             return (
-                <input
+                <Field
                     type={type}
                     name={name}
                     className={`form-field focus-outline-none ${lastElement}`}
                     placeholder={placeholder}
-                    onChange={(e) => setField(e)}
-                    value={value}
+                    component="input"
                 />
             );
     }
