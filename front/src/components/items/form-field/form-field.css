@@ -53,7 +53,14 @@
 }
 .error
 {
-    border-color: rgb(254,170,170);
-    background-color: #ffe4e4;
+    border-color: #f43e3e;
+    border-width: 2px;
 }
-
+.error-text
+{
+     color:red;
+}
+.error::placeholder
+{
+    color: #f43e3e;
+}

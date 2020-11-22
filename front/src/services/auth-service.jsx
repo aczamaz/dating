@@ -4,7 +4,7 @@ class AuthService
     url_auth = 'http://dating/api/';
     registration = async (data) =>{
         console.log(data);
-        const formData = new FormData;
+        const formData = new FormData();
         for (let key in data)
         {
             formData.append( key,(typeof data[key] === "object") ? data[key][0] : data[key]);

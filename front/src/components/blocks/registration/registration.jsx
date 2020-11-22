@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import {authRegistration } from '../../../actions'
-
+import { requiredInput, longPasswordLessThen6, isNumber, isNotLongNember} from './../../../utils/validations';
 import BackgroundPopap from '../../containers/background-popap';
 import FormField from '../../items/form-field';
 import FormButton from '../../items/form-button';
@@ -23,35 +23,45 @@ class Registration extends Component
                         type="text"
                         name="name"
                         placeholder="имя"
+                        validate={[requiredInput]}
                     />
                     <FormField
                         type="text"
                         name="email"
                         placeholder="почта"
+                        validate={[requiredInput]}
                     />
                     <FormField
                         type="password"
                         name="password"
                         placeholder="пароль"
+                        validate={[requiredInput, longPasswordLessThen6]}
                     />
                     <FormField
                         type="password"
                         name="rePassword"
                         placeholder="повторить пароль"
+                        validate={[requiredInput, longPasswordLessThen6]}
                     />
                     <FormField
                         type="select"
                         name="gender"
                         placeholder="Выберите пол"
+                        validate={[requiredInput]}
                         options={
                             [
                                 {
-                                    id:1,
+                                    id: 1,
+                                    name: "Выберите пол",
+                                    value: undefined
+                                },
+                                {
+                                    id:2,
                                     name:"мужской",
                                     value:"m"
                                 },
                                 {
-                                    id: 2,
+                                    id: 4,
                                     name: "женский",
                                     value: "f"
                                 },
@@ -62,12 +72,14 @@ class Registration extends Component
                         type="text"
                         name="age"
                         placeholder="возраст"
+                        validate={[requiredInput, isNumber, isNotLongNember]}
                     />
                     <FormField
                         type="file"
                         name="srcImage"
                         placeholder="аватарка"
                         last={true}
+                        validate={[requiredInput]}
                     />
                     <FormButton name="Регистрация" />
                 </FormAuth>
