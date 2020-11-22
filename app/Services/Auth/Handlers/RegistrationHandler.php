@@ -29,14 +29,16 @@ class RegistrationHandler
     public function registration($request)
     {
         $pathFile = $this->saveAvatar($request->srcImage);
+        $token = Str::random(10);
         $this->user->name = $request->name;
         $this->user->email = $request->email;
         $this->user->password = $request->password;
         $this->user->age = $request->age;
         $this->user->gender = $request->gender;
         $this->user->avatar_dir = $pathFile;
+        $this->user->remember_token = $token;
         if($this->user->save())
-            return ['success' =>true];
+            return ['success' => true,'remember_token'=> $token];
         return ['success' => false];
 
     }

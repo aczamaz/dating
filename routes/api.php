@@ -13,3 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('/registration', 'App\Http\Controllers\Auth\RegistrationController@registration');
+Route::post('/autorization', 'App\Http\Controllers\Auth\AutorizationController@autorization');
