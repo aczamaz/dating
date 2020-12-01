@@ -9,7 +9,7 @@ const FormAuth = (props) =>
     return(
         <div className='form-auth' onClick={(e) => stopPropagation(e)}>
             <div className='form-auth__title'>{title}</div>
-            <form className="form-auth__inner" onSubmit={(values) => { onSubmitForm(values)}}>
+            <form className="form-auth__inner" onSubmit={onSubmitForm}>
                 {children}
             </form>
         </div>

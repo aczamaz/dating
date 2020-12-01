@@ -27,7 +27,7 @@ const App = () =>
                     <Route path="/search/:id" component={SearchDetail}/>
                 </Switch>
             <Footer/>
-            <Registration show={true} />
+            <Registration />
         </div>
     )
 }

@@ -5,6 +5,7 @@ const instanse = {
             show:true
 }
 const profile = (state = instanse, action) => {
+    console.log(action);
     switch (action.type) {
         case 'AUTH_REGISTRATION':
             const authService = new AuthService();

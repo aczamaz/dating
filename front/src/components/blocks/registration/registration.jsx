@@ -1,53 +1,62 @@
 import React, { Component} from 'react';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import {authRegistration } from '../../../actions'
-import { requiredInput, longPasswordLessThen6, isNumber, isNotLongNember} from './../../../utils/validations';
 import BackgroundPopap from '../../containers/background-popap';
 import FormField from '../../items/form-field';
 import FormButton from '../../items/form-button';
 import FormAuth from '../../containers/form-auth';
-
+import SmartForm from '../../hoc/smart-form';
 import './registration.css';
 
 class Registration extends Component
 {
+    send = () => {
+        const { onSend, authRegistration } = this.props;
+        const values = onSend();
+        authRegistration(values);
+    }
     render()
     {
 
-        const { show, handleSubmit, registration } = this.props;
+        const { show, errors, setValue } = this.props;
+        const { name, email, password, rePassword, gender, age, srcImage} = errors;
         return(
             <BackgroundPopap show={show}>
-                <FormAuth title="Регистрация" onSubmitForm={handleSubmit(registration)}>
+                <FormAuth title="Регистрация" onSubmitForm={this.send}>
                     <FormField
                         type="text"
                         name="name"
                         placeholder="имя"
-                        validate={[requiredInput]}
+                        error={name}
+                        setValue={setValue}
                     />
                     <FormField
                         type="text"
                         name="email"
                         placeholder="почта"
-                        validate={[requiredInput]}
+                        error={email}
+                        setValue={setValue}
                     />
                     <FormField
                         type="password"
                         name="password"
                         placeholder="пароль"
-                        validate={[requiredInput, longPasswordLessThen6]}
+                        error={password}
+                        setValue={setValue}
                     />
                     <FormField
                         type="password"
                         name="rePassword"
                         placeholder="повторить пароль"
-                        validate={[requiredInput, longPasswordLessThen6]}
+                        error={rePassword}
+                        setValue={setValue}
                     />
                     <FormField
                         type="select"
                         name="gender"
                         placeholder="Выберите пол"
-                        validate={[requiredInput]}
+                        error={gender}
+                        setValue={setValue}
                         options={
                             [
                                 {
@@ -72,14 +81,16 @@ class Registration extends Component
                         type="text"
                         name="age"
                         placeholder="возраст"
-                        validate={[requiredInput, isNumber, isNotLongNember]}
+                        error={age}
+                        setValue={setValue}
                     />
                     <FormField
                         type="file"
                         name="srcImage"
                         placeholder="аватарка"
                         last={true}
-                        validate={[requiredInput]}
+                        error={srcImage}
+                        setValue={setValue}
                     />
                     <FormButton name="Регистрация" />
                 </FormAuth>
@@ -88,16 +99,15 @@ class Registration extends Component
     }
 };
 
-Registration = reduxForm({
-    form: 'registration',
-})(Registration);
+Registration = SmartForm(Registration);
 
 const mapDispatchToProps = {
-    registration: authRegistration
+    authRegistration: authRegistration
 }
 const mapStateToProps = ({ profile:{show}})=>{
     return{
         show:show
     }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(Registration);
