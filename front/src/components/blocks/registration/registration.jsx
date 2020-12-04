@@ -7,22 +7,19 @@ import FormButton from '../../items/form-button';
 import FormAuth from '../../containers/form-auth';
 import SmartForm from '../../hoc/smart-form';
 import './registration.css';
-
+import compose from '../../../utils/compose';
+import {WithAuthServices} from '../../hoc/with-services/'
 class Registration extends Component
 {
-    send = () => {
-        const { onSend, authRegistration } = this.props;
-        const values = onSend();
-        authRegistration(values);
-    }
     render()
     {
 
-        const { show, errors, setValue } = this.props;
-        const { name, email, password, rePassword, gender, age, srcImage} = errors;
+        const { show, errors, errorsBack, onSend, authRegistration, setValue } = this.props;
+        console.log(show,'show');
+        let { name, email, password, rePassword, gender, age, srcImage } = Object.keys(errorsBack).length > 0?errorsBack:errors;
         return(
             <BackgroundPopap show={show}>
-                <FormAuth title="Регистрация" onSubmitForm={this.send}>
+                <FormAuth title="Регистрация" onSubmitForm={(e)=>onSend(e,authRegistration)}>
                     <FormField
                         type="text"
                         name="name"
@@ -101,13 +98,22 @@ class Registration extends Component
 
 Registration = SmartForm(Registration);
 
-const mapDispatchToProps = {
-    authRegistration: authRegistration
-}
-const mapStateToProps = ({ profile:{show}})=>{
+const mapDispatchToProps = (dispatch,{authService}) =>
+{
+    console.log(authService);
     return{
-        show:show
+        authRegistration: (data) => authRegistration(data, dispatch, authService)
+    }
+}
+const mapStateToProps = ({ profile: { show, errorsBack}})=>{
+    return{
+        show:show,
+        errorsBack: errorsBack
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Registration);
+export default compose(
+    WithAuthServices(),
+    connect(mapStateToProps, mapDispatchToProps)
+)
+(Registration);

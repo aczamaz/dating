@@ -36,6 +36,7 @@ const FormInput = (props) =>
                     <input
                         className="form-field--file"
                         type={type}
+                        name={name}
                         id={name}
                         onChange={setValue}
                     />

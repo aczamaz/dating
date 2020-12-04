@@ -17,15 +17,6 @@ const sendForm = async (data,url) =>
                 'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
             }
         }
-    ).then((response) =>
-        {
-            return response.data;
-        }
-    )
-    .catch((error) =>
-        {
-            return error.data;
-        }
     );
 }
 

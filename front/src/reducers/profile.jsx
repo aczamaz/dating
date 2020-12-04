@@ -1,25 +1,29 @@
-import AuthService from '../services/auth-service';
-
 const instanse = {
-            isLogin: false,
-            show:true
+            show: true,
+            token:null,
+            errorsBack:{}
 }
 const profile = (state = instanse, action) => {
-    console.log(action);
+    console.log(state);
     switch (action.type) {
-        case 'AUTH_REGISTRATION':
-            const authService = new AuthService();
-            const result = authService.registration(action.payload);
-            if(result.success === true){
-                return {
-                    ...state,
-                    show:false
-                }
-            }
-            alert("что то пошло не так!");
-            return{
+        case 'AUTH_REGISTRATION_SUCCES':
+            console.log(action.payload.data.remember_token);
+            const token = action.payload.data.remember_token;
+            return {
                 ...state,
-                show: true
+                token: token,
+                show:false
+            }
+        case 'AUTH_REGISTRATION_ERROR':
+            const {errors} = action.payload.response.data;
+            let errorArray = {};
+            for(let key in errors)
+            {
+                errorArray[key] = errors[key][0];
+            }
+            return {
+                ...state,
+                errorsBack:errorArray
             }
         default:
             return state;

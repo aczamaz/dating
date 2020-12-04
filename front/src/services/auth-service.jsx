@@ -2,9 +2,9 @@ import {sendForm} from '../utils';
 class AuthService
 {
     url_auth = 'http://dating/api/';
-    registration = async (data) =>
+    registration = (data) =>
     {
-        return sendForm(data,this.url_auth+'registration');
+        return sendForm(data, this.url_auth + 'registration');
     }
 }
 export default AuthService;

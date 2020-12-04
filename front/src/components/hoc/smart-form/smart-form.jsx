@@ -17,15 +17,15 @@ export const SmartForm = (Wtaper, checks = undefined) => {
             this.setState({ errors: newRrrors });
             return Object.keys(newRrrors).length;
         };
-        handle = (e) => {
+        handle = (e,func) => {
             e.preventDefault();
             if (this.checkAllFields()) return false;
             const { values } = this.state;
-            return values;
+            func(values);
         };
         getTargetProps = (target) => {
             const { type, name } = target;
-            const value = type === "file" ? target.files[0] : target.value;
+            const value = type === "file" ? target.files : target.value;
             return { name, value };
         };
         smartCheckValue = (target, checker) => {
@@ -34,6 +34,7 @@ export const SmartForm = (Wtaper, checks = undefined) => {
             return checker(value, values);
         };
         checkValue = (target) => {
+            if (!checks) return false;
             const { name, value } = this.getTargetProps(target);
             const checksArray = checks[name];
             if (!checksArray) return false;
