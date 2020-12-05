@@ -6,7 +6,7 @@ import FormButton from '../../items/form-button';
 import FormAuth from '../../containers/form-auth';
 
 import { connect } from 'react-redux';
-import { authAutorizate } from '../../../actions';
+import { authAutorizate, toggleAutorizationPopap } from '../../../actions';
 import SmartForm from '../../hoc/smart-form';
 import compose from '../../../utils/compose';
 import { WithAuthServices } from '../../hoc/with-services/';
@@ -15,11 +15,11 @@ import {checkAutorizationForm} from './validation';
 
 import './autorization.css';
 
-let Autorization = ({ show, errors, errorsBack, onSend, authAutorizate, setValue }) =>
+let Autorization = ({ show, errors, toggleAutorizationPopap, errorsBack, onSend, authAutorizate, setValue }) =>
 {
     let {email, password } = Object.keys(errorsBack).length > 0 ? errorsBack : errors;
     return(
-        <BackgroundPopap show={show}>
+        <BackgroundPopap show={show} toglePopap={toggleAutorizationPopap}>
             <FormAuth title="Войти" onSubmitForm={(e) => onSend(e, authAutorizate)}>
                 <FormField
                     type="text"
@@ -45,7 +45,8 @@ let Autorization = ({ show, errors, errorsBack, onSend, authAutorizate, setValue
 Autorization = SmartForm(Autorization,checkAutorizationForm);
 const mapDispatchToProps = (dispatch, { authService }) => {
     return {
-        authAutorizate: (data) => authAutorizate(data, dispatch, authService)
+        authAutorizate: (data) => authAutorizate(data, dispatch, authService),
+        toggleAutorizationPopap: ()=>dispatch(toggleAutorizationPopap())
     }
 }
 const mapStateToProps = ({ profile: { showAutorizationPopap, errorsBack } }) => {

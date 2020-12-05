@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import {authRegistration } from '../../../actions'
+import { authRegistration, toggleRegistrationPopap } from '../../../actions'
 import BackgroundPopap from '../../containers/background-popap';
 import FormField from '../../items/form-field';
 import FormButton from '../../items/form-button';
@@ -14,10 +14,10 @@ class Registration extends Component
 {
     render()
     {
-        const { show, errors, errorsBack, onSend, authRegistration, setValue } = this.props;
+        const { show, errors, errorsBack, toggleRegistrationPopap, onSend, authRegistration, setValue } = this.props;
         let { name, email, password, rePassword, gender, age, srcImage } = Object.keys(errorsBack).length > 0?errorsBack:errors;
         return(
-            <BackgroundPopap show={show}>
+            <BackgroundPopap show={show} toglePopap={toggleRegistrationPopap}>
                 <FormAuth title="Регистрация" onSubmitForm={(e)=>onSend(e,authRegistration)}>
                     <FormField
                         type="text"
@@ -100,7 +100,8 @@ Registration = SmartForm(Registration, checkRegistrationForm);
 const mapDispatchToProps = (dispatch,{authService}) =>
 {
     return{
-        authRegistration: (data) => authRegistration(data, dispatch, authService)
+        authRegistration: (data) => authRegistration(data, dispatch, authService),
+        toggleRegistrationPopap: () => dispatch(toggleRegistrationPopap())
     }
 }
 const mapStateToProps = ({ profile: { showRegistrationPopap, errorsBack}})=>{

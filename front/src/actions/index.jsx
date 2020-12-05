@@ -36,7 +36,26 @@ const authAutorizate = (data,dispatch,authService) =>
         .then((data) => dispatch(authAutorizateSucces(data)))
         .catch((error) => dispatch(authAutorizateError(error)));
 }
+const toggleRegistrationPopap = () =>
+{
+    return {
+        type:'TOGGLE_REGISTRATION_POPAP'
+    }
+}
+const toggleAutorizationPopap = () => {
+    return {
+        type: 'TOGGLE_AUTORIZATION_POPAP'
+    }
+}
+const logout = () =>{
+    return {
+        type:'LOGOUT'
+    }
+}
 export {
     authRegistration,
-    authAutorizate
+    authAutorizate,
+    toggleRegistrationPopap,
+    toggleAutorizationPopap,
+    logout
 };

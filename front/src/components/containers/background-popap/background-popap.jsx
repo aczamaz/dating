@@ -3,14 +3,13 @@ import React,{useState} from 'react';
 import './background-popap.css';
 const BackgroundPopap = (props) =>
 {
-    const {children,show} = props;
-    const [ isShow, showBackGround ] = useState(true);
-    if (show && isShow)
+    const {children,show,toglePopap} = props;
+    if (show)
     {
         return(
             <div
                 className='background-popap'
-                onClick = {()=>showBackGround(false)}
+                onClick={() => toglePopap()}
             >
                 {
                     children

@@ -1,6 +1,6 @@
 const instanse = {
             showRegistrationPopap: false,
-            showAutorizationPopap: true,
+            showAutorizationPopap: false,
             token:null,
             errorsBack:{}
 }
@@ -27,7 +27,12 @@ const authError = (state, action) =>
         errorsBack: errorArray
     }
 }
+const toggleValue = (value) =>
+{
+    return value ? false: true;
+}
 const profile = (state = instanse, action) => {
+    console.log(action);
     switch (action.type) {
         case 'AUTH_REGISTRATION_SUCCES':
             return authSucces(state, action, { showRegistrationPopap: false})
@@ -37,6 +42,22 @@ const profile = (state = instanse, action) => {
             return authError(state, action);
         case 'AUTH_AUTORIZATE_ERROR':
             return authError(state, action);
+        case 'TOGGLE_REGISTRATION_POPAP':
+            return{
+                ...state,
+                showRegistrationPopap: toggleValue(state.showRegistrationPopap)
+            }
+        case 'TOGGLE_AUTORIZATION_POPAP':
+            return {
+                ...state,
+                showAutorizationPopap: toggleValue(state.showAutorizationPopap)
+            }
+        case 'LOGOUT':
+            window.location.href = "/";
+            return{
+                ...state,
+                token:null
+            }
         default:
             return state;
     }
