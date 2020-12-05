@@ -21,7 +21,7 @@ export const isNumber = (value) => {
 export const sinsPassword = (value, values) => {
     if (!value || !values["password"]) return "пароли не совпадают";
     const length =
-        value.lenght >= values["password"].length
+    value.lenght >= values["password"].length
     ? values["name"].length
     : value.length;
     for (let i = 0; i < length; i++) {

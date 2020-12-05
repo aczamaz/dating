@@ -8,15 +8,13 @@ import FormAuth from '../../containers/form-auth';
 import SmartForm from '../../hoc/smart-form';
 import './registration.css';
 import compose from '../../../utils/compose';
-import {WithAuthServices} from '../../hoc/with-services/'
+import {WithAuthServices} from '../../hoc/with-services/';
 import { checkRegistrationForm} from './validation';
 class Registration extends Component
 {
     render()
     {
-        console.log(this.props);
         const { show, errors, errorsBack, onSend, authRegistration, setValue } = this.props;
-        console.log(show,'show');
         let { name, email, password, rePassword, gender, age, srcImage } = Object.keys(errorsBack).length > 0?errorsBack:errors;
         return(
             <BackgroundPopap show={show}>
@@ -101,7 +99,6 @@ Registration = SmartForm(Registration, checkRegistrationForm);
 
 const mapDispatchToProps = (dispatch,{authService}) =>
 {
-    console.log(authService);
     return{
         authRegistration: (data) => authRegistration(data, dispatch, authService)
     }

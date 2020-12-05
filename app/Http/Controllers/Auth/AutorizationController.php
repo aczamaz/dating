@@ -18,6 +18,6 @@ class AutorizationController extends Controller
     {
         $result = $this->authService->autorization($request);
 
-        return response()->json($result);
+        return $result;
     }
 }

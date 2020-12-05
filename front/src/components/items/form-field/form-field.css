@@ -64,3 +64,9 @@
 {
     color: #f43e3e;
 }
+.error-label
+{
+    width: 100%;
+    height: 20px;
+    color:red;
+}

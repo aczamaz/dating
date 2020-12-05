@@ -6,5 +6,9 @@ class AuthService
     {
         return sendForm(data, this.url_auth + 'registration');
     }
+    autorizate = (data) =>
+    {
+        return sendForm(data, this.url_auth + 'autorization');
+    }
 }
 export default AuthService;

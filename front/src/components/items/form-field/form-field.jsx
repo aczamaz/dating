@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import './form-field.css';
 const FormInput = (props) =>
 {
@@ -20,38 +20,46 @@ const FormInput = (props) =>
                 }
             )
             return (
-                <select
-                    className={`form-field focus-outline-none form-select--text form-select--arrow ${lastElement} ${error ? 'error' : ''}`}
-                    placeholder={placeholder}
-                    name={name}
-                    onChange={setValue}
-                >
-                    { optionsFileds}
-                </select>
+                <Fragment>
+                    <select
+                        className={`form-field focus-outline-none form-select--text form-select--arrow ${lastElement} ${error ? 'error' : ''}`}
+                        placeholder={placeholder}
+                        name={name}
+                        onChange={setValue}
+                    >
+                        { optionsFileds}
+                    </select>
+                    { (error && !lastElement) ? <div className="error-label"> {error} </div> : null}
+                </Fragment>
             )
         case 'file':
             return (
-                <label htmlFor={name} className={`form-field focus-outline-none form-field--file-label ${lastElement} ${error ? 'error' : ''}`}>
-                    'Выберите файл
+                <Fragment>
+                    <label htmlFor={name} className={`form-field focus-outline-none form-field--file-label ${lastElement} ${error ? 'error' : ''}`}>
+                        {error?'файл не выбран':'выберите файл'}
+                        <input
+                            className="form-field--file"
+                            type={type}
+                            name={name}
+                            id={name}
+                            onChange={setValue}
+                        />
+                    </label>
+                </Fragment>
+            );
+        default:
+            return (
+                <Fragment >
                     <input
-                        className="form-field--file"
+                        className={`form-field focus-outline-none ${lastElement} ${error ? 'error' : ''}`}
+                        placeholder={error ? error : placeholder}
                         type={type}
                         name={name}
                         id={name}
                         onChange={setValue}
                     />
-                </label>
-            );
-        default:
-            return (
-                <input
-                    className={`form-field focus-outline-none ${lastElement} ${error ? 'error' : ''}`}
-                    placeholder={error ? error : placeholder}
-                    type={type}
-                    name={name}
-                    id={name}
-                    onChange={setValue}
-                />
+                    { (error && !lastElement)? <div className="error-label"> {error} </div>:null}
+                </Fragment>
             );
     }
 };

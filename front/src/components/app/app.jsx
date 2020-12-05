@@ -9,7 +9,8 @@ import Dating from '../pages/dating'
 import Search from '../pages/search';
 import SearchDetail from '../pages/search-detail';
 import Main from '../pages/main';
-import Registration from '../blocks/registration'
+import Registration from '../blocks/registration';
+import Autorization from '../blocks/autorization';
 import './app.css';
 
 const App = () =>
@@ -28,6 +29,7 @@ const App = () =>
                 </Switch>
             <Footer/>
             <Registration />
+            <Autorization />
         </div>
     )
 }

@@ -15,7 +15,7 @@ class AutorizationHandler
 
     public function autorization($requst)
     {
-        $user = $this->user->
+        $users = $this->user->
                         where(
                                 [
                                     'email' => $requst->email,
@@ -23,10 +23,9 @@ class AutorizationHandler
                                 ]
                             )
                         ->get();
-
-        if($user->count() != 0)
-            return['success' => true,'remember_token' => $user->remember_token];
+        if($users->count())
+            return response()->json(['success' => true,'remember_token' => $users[0]->remember_token],200);
         else
-            return['success' => false ];
+            return response()->json(['success' => false,'errors'=>['email'=>['неверные данные'],'password'=> ['неверные данные']]],400);
     }
 }
