@@ -1,51 +1,36 @@
-const checkField = (checks,value,secondValue = null) =>
+//проверка на сушествовование
+export const required = (value) => {
+    return (!value || value === undefined) ? "заполните" : false;
+};
+//проверка на коректность почты
+export const isMail = (value) =>
 {
-    if (checks.indexOf('required') !==-1)
-    {
-        if (!value || value === undefined)
-        {
-            return 'Заполните поле'
-        }
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+        return 'Не коректная почта'
     }
-    if (checks.indexOf('mail') !== -1)
+    else
     {
-        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value))
-        {
-            return 'Не коректная почта'
-        }
-    }
-    if (checks.indexOf('similar') !== -1)
-    {
-        if (value !== secondValue)
-        {
-            return 'Пароли не совпадают'
-        }
-    }
-    if (checks.indexOf('number') !== -1)
-    {
-        if (isNaN(Number(value)))
-        {
-            return 'Значение должно быть числом'
-        }
-    }
-    if (checks.indexOf('notBig') !== -1)
-    {
-        if (String(value).length > 3 ) {
-            return 'Слишком длинное значение'
-        }
+        return false;
     }
 }
-
-export const registrationValidator = (values) =>
+//проверка на то что значение число
+export const isNumber = (value) => {
+    return isNaN(value) ? "не число" : false;
+};
+//проверка на то что пароли совпадают
+export const sinsPassword = (value, values) => {
+    if (!value || !values["password"]) return "пароли не совпадают";
+    const length =
+        value.lenght >= values["password"].length
+    ? values["name"].length
+    : value.length;
+    for (let i = 0; i < length; i++) {
+        if (value[i] !== values["password"][i]) return "пароли не совпадают";
+    }
+    return false;
+};
+//проверка на то что возраст адекватный
+export const isNotBigAge = (value) =>
 {
-    const errors = {}
-
-    errors.name = checkField(['required'], values.name);
-    errors.email = checkField(['required','mail'], values.email);
-    errors.password = checkField(['required'], values.password);
-    errors.rePassword = checkField(['required','similar'], values.rePassword, values.password);
-    errors.age = checkField(['required', 'number','notBig'], values.age);
-    errors.srcImage = checkField(['required'], values.srcImage);
-
-    return errors
+    return String(value).length > 3 ? 'Слишком длинное значение' : false;
 }

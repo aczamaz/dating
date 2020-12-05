@@ -1,5 +1,5 @@
 const instanse = {
-            show: true,
+            showRegistrationPopap: true,
             token:null,
             errorsBack:{}
 }
@@ -12,7 +12,7 @@ const profile = (state = instanse, action) => {
             return {
                 ...state,
                 token: token,
-                show:false
+                showRegistrationPopap:false
             }
         case 'AUTH_REGISTRATION_ERROR':
             const {errors} = action.payload.response.data;

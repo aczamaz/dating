@@ -29,7 +29,7 @@ class RegistrationRequest extends FormRequest
             'password'=>'required',
             'age'=> 'required|integer',
             'gender'=> 'required|size:1|string',
-            'avatar'=>'file'
+            'srcImage'=> 'required|file|image'
         ];
     }
 }
