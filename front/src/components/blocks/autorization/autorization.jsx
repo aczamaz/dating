@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import BackgroundPopap from '../../containers/background-popap';
 import FormField from '../../items/form-field';
 import FormButton from '../../items/form-button';
@@ -43,9 +43,9 @@ let Autorization = ({ show, errors, toggleAutorizationPopap, errorsBack, onSend,
 };
 
 Autorization = SmartForm(Autorization,checkAutorizationForm);
-const mapDispatchToProps = (dispatch, { authService }) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        authAutorizate: (data) => authAutorizate(data, dispatch, authService),
+        authAutorizate: (data) => authAutorizate(data, dispatch, ownProps),
         toggleAutorizationPopap: ()=>dispatch(toggleAutorizationPopap())
     }
 }
@@ -57,6 +57,7 @@ const mapStateToProps = ({ profile: { showAutorizationPopap, errorsBack } }) => 
 }
 
 export default compose(
+    withRouter,
     WithAuthServices(),
     connect(mapStateToProps, mapDispatchToProps)
 )

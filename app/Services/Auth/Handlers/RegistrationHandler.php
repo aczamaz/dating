@@ -38,7 +38,10 @@ class RegistrationHandler
         $this->user->avatar_dir = $pathFile;
         $this->user->remember_token = $token;
         if($this->user->save())
-            return ['success' => true,'remember_token'=> $token];
+        {
+            $this->user->avatar_dir =  '/storage/app/'. $this->user->avatar_dir;
+            return ['success' => true,'userData'=>$this->user];
+        }
         return ['success' => false];
 
     }

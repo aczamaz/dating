@@ -1,14 +1,14 @@
 import {sendForm} from '../utils';
 class AuthService
 {
-    url_auth = 'http://dating/api/';
+    apiUrl = process.env.REACT_APP_API_URL;
     registration = (data) =>
     {
-        return sendForm(data, this.url_auth + 'registration');
+        return sendForm(data, this.apiUrl + 'registration');
     }
     autorizate = (data) =>
     {
-        return sendForm(data, this.url_auth + 'autorization');
+        return sendForm(data, this.apiUrl + 'autorization');
     }
 }
 export default AuthService;

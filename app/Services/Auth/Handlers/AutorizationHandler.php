@@ -24,8 +24,13 @@ class AutorizationHandler
                             )
                         ->get();
         if($users->count())
-            return response()->json(['success' => true,'remember_token' => $users[0]->remember_token],200);
+        {
+            $users[0]->avatar_dir = '/storage/app/' . $users[0]->avatar_dir;
+            return response()->json(['success' => true,'userData'=> $users[0]],200);
+        }
         else
+        {
             return response()->json(['success' => false,'errors'=>['email'=>['неверные данные'],'password'=> ['неверные данные']]],400);
+        }
     }
 }

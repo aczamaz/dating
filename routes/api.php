@@ -1,6 +1,4 @@
 <?php
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +12,4 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/registration', 'App\Http\Controllers\Auth\RegistrationController@registration');
 Route::post('/autorization', 'App\Http\Controllers\Auth\AutorizationController@autorization');
+Route::post('/getUserByToken', 'App\Http\Controllers\User\UserController@getUserByToken');

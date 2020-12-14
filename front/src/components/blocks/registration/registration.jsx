@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { authRegistration, toggleRegistrationPopap } from '../../../actions'
 import BackgroundPopap from '../../containers/background-popap';
 import FormField from '../../items/form-field';
@@ -8,7 +9,7 @@ import FormAuth from '../../containers/form-auth';
 import SmartForm from '../../hoc/smart-form';
 import './registration.css';
 import compose from '../../../utils/compose';
-import {WithAuthServices} from '../../hoc/with-services/';
+import { WithAuthServices } from '../../hoc/with-services/';
 import { checkRegistrationForm} from './validation';
 class Registration extends Component
 {
@@ -97,10 +98,10 @@ class Registration extends Component
 
 Registration = SmartForm(Registration, checkRegistrationForm);
 
-const mapDispatchToProps = (dispatch,{authService}) =>
+const mapDispatchToProps = (dispatch,ownProps) =>
 {
     return{
-        authRegistration: (data) => authRegistration(data, dispatch, authService),
+        authRegistration: (data) => authRegistration(data, dispatch, ownProps),
         toggleRegistrationPopap: () => dispatch(toggleRegistrationPopap())
     }
 }
@@ -112,6 +113,7 @@ const mapStateToProps = ({ profile: { showRegistrationPopap, errorsBack}})=>{
 }
 
 export default compose(
+    withRouter,
     WithAuthServices(),
     connect(mapStateToProps, mapDispatchToProps)
 )

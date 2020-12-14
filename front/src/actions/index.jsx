@@ -1,5 +1,6 @@
-const authRegistrationSucces = (data) =>
+const authRegistrationSucces = (data, history) =>
 {
+    history.push('/profile/');
     return {
         type:'AUTH_REGISTRATION_SUCCES',
         payload:data
@@ -12,13 +13,15 @@ const authRegistrationError = (error)=>
         payload:error
     }
 }
-const authRegistration = (data, dispatch, authService) =>
+const authRegistration = (data, dispatch, ownProps) =>
 {
+    const { authService, history } = ownProps;
     authService.registration(data)
-        .then((data) => dispatch(authRegistrationSucces(data)))
+        .then((data) => dispatch(authRegistrationSucces(data, history)))
         .catch((error) => dispatch(authRegistrationError(error)));
 }
-const authAutorizateSucces = (data) => {
+const authAutorizateSucces = (data, history) => {
+    history.push('/profile/');
     return {
         type: 'AUTH_AUTORIZATE_SUCCES',
         payload: data
@@ -30,10 +33,11 @@ const authAutorizateError = (error) => {
         payload: error
     }
 }
-const authAutorizate = (data,dispatch,authService) =>
+const authAutorizate = (data, dispatch, ownProps) =>
 {
+    const { authService, history } = ownProps;
     authService.autorizate(data)
-        .then((data) => dispatch(authAutorizateSucces(data)))
+        .then((data) => dispatch(authAutorizateSucces(data, history)))
         .catch((error) => dispatch(authAutorizateError(error)));
 }
 const toggleRegistrationPopap = () =>
@@ -42,20 +46,51 @@ const toggleRegistrationPopap = () =>
         type:'TOGGLE_REGISTRATION_POPAP'
     }
 }
-const toggleAutorizationPopap = () => {
+const toggleAutorizationPopap = () =>
+{
     return {
         type: 'TOGGLE_AUTORIZATION_POPAP'
     }
 }
-const logout = () =>{
+const logout = (ownProps) =>
+{
+    const { history } = ownProps;
+    history.push("/");
     return {
         type:'LOGOUT'
     }
+}
+
+const getProfileInfoByTokenSucees = (data, history) =>
+{
+    if (window.location.pathname === "/")
+        history.push("/profile/")
+    return{
+        type: 'GET_PROFILE_INFO_BY_TOKEN_SUCCES',
+        payload: data
+    }
+}
+
+const getProfileInfoByTokenError = (error) =>
+{
+    return{
+        type: 'GET_PROFILE_INFO_BY_TOKEN_ERROR',
+        payload: error
+    }
+}
+
+const getProfileInfoByToken = (token,dispatch,ownProps)=>
+{
+    const { history, userService } = ownProps;
+    userService.getUserByToken(token)
+        .then((data) => dispatch(getProfileInfoByTokenSucees(data, history)))
+        .catch((error) => dispatch(getProfileInfoByTokenError(error)));
 }
 export {
     authRegistration,
     authAutorizate,
     toggleRegistrationPopap,
     toggleAutorizationPopap,
-    logout
+    logout,
+    getProfileInfoByToken
 };

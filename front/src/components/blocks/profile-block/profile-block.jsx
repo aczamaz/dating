@@ -2,11 +2,28 @@ import React from 'react'
 
 import './profile-block.css';
 import ProfileInfo from '../profile-info';
-const ProfileBlock = () =>{
+import { connect } from 'react-redux';
+
+const ProfileBlock = ({ userData}) =>
+{
+    console.log(userData);
     return (
         <div className="profile-block">
-            <ProfileInfo/>
+            <ProfileInfo userData={userData} />
         </div>
     )
 }
-export default ProfileBlock;
+
+const mapDispatchToProps = () =>
+{
+    return{};
+};
+
+const mapStateToProps = ({ profile: { userData} }) =>
+{
+    return {
+        userData: userData
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileBlock);

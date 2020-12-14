@@ -1,22 +1,29 @@
+import Cookies  from 'js-cookie';
+
 const instanse = {
             showRegistrationPopap: false,
             showAutorizationPopap: false,
             token:null,
-            errorsBack:{}
+            errorsBack:{},
+            userData:{}
 }
+
 const authSucces = (state,action,castom) =>
 {
-    const token = action.payload.data.remember_token;
+    const { userData } = action.payload.data;
+    const token = userData.remember_token;
+    Cookies.set('userToken', token)
     return{
         ...state,
         token: token,
+        userData: userData,
         ...castom,
         errorsBack: {}
     }
 }
+
 const authError = (state, action) =>
 {
-    console.log(action);
     const { errors } = action.payload.response.data;
     let errorArray = {};
     for (let key in errors) {
@@ -27,12 +34,12 @@ const authError = (state, action) =>
         errorsBack: errorArray
     }
 }
+
 const toggleValue = (value) =>
 {
     return value ? false: true;
 }
 const profile = (state = instanse, action) => {
-    console.log(action);
     switch (action.type) {
         case 'AUTH_REGISTRATION_SUCCES':
             return authSucces(state, action, { showRegistrationPopap: false})
@@ -53,10 +60,23 @@ const profile = (state = instanse, action) => {
                 showAutorizationPopap: toggleValue(state.showAutorizationPopap)
             }
         case 'LOGOUT':
-            window.location.href = "/";
+            Cookies.remove('userToken');
             return{
                 ...state,
                 token:null
+            }
+        case 'GET_PROFILE_INFO_BY_TOKEN_SUCCES':
+            const { userData } = action.payload.data;
+            const token = userData.token;
+            delete userData.token;
+            return{
+                ...state,
+                token: token,
+                userData: userData
+            }
+        case 'GET_PROFILE_INFO_BY_TOKEN_ERROR':
+            return{
+                ...state
             }
         default:
             return state;
