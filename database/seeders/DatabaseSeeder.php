@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserTableSeeder::class,
+            DialogsTableSeeder::class,
             MessageTableSeeder::class
         ]);
     }

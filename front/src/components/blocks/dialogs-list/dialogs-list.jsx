@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './dialogs-list.css';
-import MessagesService from '../../../services/messages-service.jsx'
-export default class DialogsList extends Component
+
+import { connect } from 'react-redux';
+import { getDialogs } from '../../../actions';
+import  compose  from '../../../utils/compose';
+import {WithDialogsService} from '../../hoc/with-services';
+import Cookies  from 'js-cookie';
+class DialogsList extends Component
 {
-    state = {
-        dialogs:[]
-    };
     componentDidMount()
     {
-        const dialogsService = new MessagesService();
-        const dialogs = dialogsService.getDialogs();
-        this.setState({ dialogs: dialogs});
+        let { getDialogs, token } = this.props;
+        if (!token)
+            token = Cookies.get('userToken');
+        console.log(token);
+        getDialogs(token);
     }
     buildDialogsItem()
     {
-        const dialogs = this.state.dialogs;
+        const dialogs = this.props.dialogsData;
+        console.log(dialogs);
+        if(dialogs.length === 0)
+            return(
+                <div className="dialos-list__empty">нету диалогов</div>
+            )
         return dialogs.map(
-            ({ avatarSrc, name, message, id }) => {
+            ({ img, name, message, dialogId }) => {
                 return (
-                    <Link to={`/dialogs/${id}`} key={id} className="dialog-list__item">
-                        <img className="dialog-list__avatar" src={avatarSrc} alt="" />
+                    <Link to={`/dialogs/${dialogId}`} key={dialogId} className="dialog-list__item">
+                        <img className="dialog-list__avatar" src={img} alt="" />
                         <div className="dialog-list__name dialog-list_text-style">
                             {name}:
                         </div>
@@ -42,4 +51,21 @@ export default class DialogsList extends Component
             </div>
         )
     }
+};
+
+const mapStateToProps = ({profile:{token},dialogs:{dialogsData}}) =>{
+    return{
+        token:token,
+        dialogsData: dialogsData
+    }
 }
+const mapDispatchToProps = (dispatch,ownProps) =>
+{
+    return{
+        getDialogs: (token) => getDialogs(token, dispatch, ownProps)
+    }
+}
+export default compose(
+    WithDialogsService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(DialogsList);

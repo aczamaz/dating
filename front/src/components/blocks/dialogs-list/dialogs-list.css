@@ -44,3 +44,10 @@
     color:#A87B7B;
     margin-left: 10px;
 }
+.dialos-list__empty
+{
+    color:#A87B7B;
+    margin: 30px auto;
+    text-align: center;
+    font-size:30px;
+}

@@ -1,47 +1,50 @@
 import img from './avatar.png';
-
-class MessagesService
+import sendForm from '../utils/send-form';
+class DialogsService
 {
-    getDialogs()
+    apiUrl = process.env.REACT_APP_API_URL;
+    getDialogs(token)
     {
-        return [
-            {
-                id:1,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            },
-            {
-                id: 2,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            },
-            {
-                id: 3,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            },
-            {
-                id: 4,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            },
-            {
-                id: 5,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            },
-            {
-                id: 6,
-                avatarSrc: img,
-                name: "Вы",
-                message: "Привет что делаешь?"
-            }
-        ];
+        const data = { token: token };
+        return sendForm(data, this.apiUrl + 'getDialogs');
+        // return [
+        //     {
+        //         id:1,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     },
+        //     {
+        //         id: 2,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     },
+        //     {
+        //         id: 3,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     },
+        //     {
+        //         id: 4,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     },
+        //     {
+        //         id: 5,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     },
+        //     {
+        //         id: 6,
+        //         avatarSrc: img,
+        //         name: "Вы",
+        //         message: "Привет что делаешь?"
+        //     }
+        // ];
     }
     getDialog()
     {
@@ -91,4 +94,4 @@ class MessagesService
         ]
     }
 }
-export default MessagesService;
+export default DialogsService;

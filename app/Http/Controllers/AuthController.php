@@ -1,17 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\RegistrationRequest;
+use App\Http\Requests\AutorizantionRequest;
 use App\Services\Auth\AuthService;
-class RegistrationController extends Controller
+
+class AuthController extends Controller
 {
     private $authService;
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
+    }
+    public function autorization(AutorizantionRequest $request)
+    {
+        $result = $this->authService->autorization($request);
+
+        return $result;
     }
     public function registration(RegistrationRequest $request)
     {

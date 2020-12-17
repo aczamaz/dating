@@ -17,7 +17,7 @@ class UserRepository
         return[
             'id'=>$user->id,
             'token'=>$user->remember_token,
-            'img'=>$user->avatar_dir,
+            'avatar_dir'=>$user->avatar_dir,
             'name'=>$user->name,
             'age'=>$user->age,
             'gender'=>$user->gender
@@ -34,5 +34,14 @@ class UserRepository
         {
             return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
         }
+    }
+    public function getIdByToken($token)
+    {
+        if(!$token)
+            return false;
+        $user = $this->user->where('remember_token', $token)->get();
+        if($user->count())
+            return $user[0]->id;
+        return false;
     }
 }

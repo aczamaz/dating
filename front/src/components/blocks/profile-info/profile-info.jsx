@@ -1,10 +1,8 @@
 import React from 'react';
 import './profile-info.css';
-import img from './avatar.png';
 const ProfileInfo = (props) =>
 {
     const {userData} = props;
-    console.log(userData);
     const info = [
         {
             id:1,
@@ -13,18 +11,18 @@ const ProfileInfo = (props) =>
         },
         {
             id:2,
-            name: userData.age,
-            value: 26
+            name: "Возраст",
+            value: userData.age
         },
         {
             id:3,
             name: "Пол",
-            value: "Мужской"
+            value: userData.gender==="m"?"Мужской":"Женский"
         },
     ]
     return(
         <div className="profile-info">
-            <img src={userData.img} alt="" />
+            <img src={userData.avatar_dir} alt="" />
             <div className="profile-info__lines">
                 {
                     info.map((line)=>{

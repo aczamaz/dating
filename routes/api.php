@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/registration', 'App\Http\Controllers\Auth\RegistrationController@registration');
-Route::post('/autorization', 'App\Http\Controllers\Auth\AutorizationController@autorization');
-Route::post('/getUserByToken', 'App\Http\Controllers\User\UserController@getUserByToken');
+Route::post('/registration', 'App\Http\Controllers\AuthController@registration');
+Route::post('/autorization', 'App\Http\Controllers\AuthController@autorization');
+Route::post('/getUserByToken', 'App\Http\Controllers\UserController@getUserByToken');
+Route::post('/getDialogs', 'App\Http\Controllers\DialogController@getDialogs');

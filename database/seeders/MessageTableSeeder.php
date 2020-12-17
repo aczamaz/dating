@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dialog;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
@@ -14,19 +15,26 @@ class MessageTableSeeder extends Seeder
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user,Dialog $dialog)
     {
         $this->User = $user;
+        $this->Dialog = $dialog;
     }
     public function getUsers()
     {
         return $this->User->All();
     }
 
+    public function getDialog()
+    {
+        return $this->Dialog->All();
+    }
     public function run()
     {
         $users = $this->getUsers();
-        for($i = 0; $i < 10; $i++)
+        $dialogs = $this->getDialog();
+
+        foreach($dialogs as $dialog)
         {
             foreach ($users as $sender)
             {
@@ -38,6 +46,7 @@ class MessageTableSeeder extends Seeder
                             [
                                 'sender'=>$sender->id,
                                 'recipient' => $recipient->id,
+                                'dialog_id' => $dialog->id
                             ]
                         )->create();
                     }

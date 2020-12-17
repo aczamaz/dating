@@ -86,11 +86,32 @@ const getProfileInfoByToken = (token,dispatch,ownProps)=>
         .then((data) => dispatch(getProfileInfoByTokenSucees(data, history)))
         .catch((error) => dispatch(getProfileInfoByTokenError(error)));
 }
+const getDialogsSucces = (data) =>
+{
+    return{
+        type:'GET_DIALOGS_SUCCES',
+        payload:data
+    }
+}
+const getDialogsError = (error) => {
+    return {
+        type: 'GET_DIALOGS_ERROR',
+        payload: error
+    }
+}
+const getDialogs = (token,dispatch,ownProps) =>
+{
+    const { dialogsService } = ownProps;
+    dialogsService.getDialogs(token)
+        .then((data)=>dispatch(getDialogsSucces(data)))
+        .catch((error) => dispatch(getDialogsError(error)))
+}
 export {
     authRegistration,
     authAutorizate,
     toggleRegistrationPopap,
     toggleAutorizationPopap,
     logout,
-    getProfileInfoByToken
+    getProfileInfoByToken,
+    getDialogs
 };

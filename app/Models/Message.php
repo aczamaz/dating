@@ -11,14 +11,14 @@ class Message extends Model
 
     protected $table = 'messages';
 
-    protected $fillable = ['sender','recipient','message'];
+    protected $fillable = ['sender','recipient','message','dialog_id'];
 
-    public function sender()
+    public function getSender()
     {
         return $this->hasOne('App\Models\User','id','sender');
     }
 
-    public function recipient()
+    public function getRecipient()
     {
         return $this->hasOne('App\Models\User', 'id', 'recipient');
     }

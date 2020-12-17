@@ -15,4 +15,8 @@ class UserService
     {
         return $this->userRepository->getUserByToken($token);
     }
+    public function getIdByToken($token)
+    {
+        return $this->userRepository->getIdByToken($token);
+    }
 }

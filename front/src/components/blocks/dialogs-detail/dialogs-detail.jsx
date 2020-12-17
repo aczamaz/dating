@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import MessagesService from '../../../services/messages-service.jsx';
+import DialogsService from '../../../services/dialogs-service.jsx';
 
 import './dialogs-detail.css';
 
@@ -11,7 +11,7 @@ export default class DialogsDetail extends Component
     }
     componentDidMount()
     {
-        const dialogsService = new MessagesService();
+        const dialogsService = new DialogsService();
         this.setState({dialogList: dialogsService.getDialog()})
     }
     buildDialogList()
