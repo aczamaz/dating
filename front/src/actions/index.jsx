@@ -1,3 +1,10 @@
+const setToken = (token)=>
+{
+    return{
+        type:'SET_TOKEN',
+        payload:token
+    }
+}
 const authRegistrationSucces = (data, history) =>
 {
     history.push('/profile/');
@@ -107,6 +114,7 @@ const getDialogs = (token,dispatch,ownProps) =>
         .catch((error) => dispatch(getDialogsError(error)))
 }
 export {
+    setToken,
     authRegistration,
     authAutorizate,
     toggleRegistrationPopap,

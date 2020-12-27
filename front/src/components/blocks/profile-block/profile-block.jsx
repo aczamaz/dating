@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 const ProfileBlock = ({ userData}) =>
 {
-    console.log(userData);
     return (
         <div className="profile-block">
             <ProfileInfo userData={userData} />

@@ -3,7 +3,7 @@ import {Link,withRouter} from 'react-router-dom';
 import './header.css';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
-import { toggleRegistrationPopap, toggleAutorizationPopap, logout, getProfileInfoByToken } from '../../../actions';
+import { setToken,toggleRegistrationPopap, toggleAutorizationPopap, logout, getProfileInfoByToken } from '../../../actions';
 import compose from '../../../utils/compose';
 import { WithUserServices } from '../../hoc/with-services';
 class Header extends Component
@@ -11,9 +11,12 @@ class Header extends Component
     componentDidMount()
     {
         const token = Cookies.get('userToken');
-        const { getProfileInfoByToken } = this.props;
+        const { getProfileInfoByToken, setToken } = this.props;
         if (token)
+        {
+            setToken(token);
             getProfileInfoByToken(token);
+        }
     }
     render()
     {
@@ -53,6 +56,7 @@ class Header extends Component
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return{
+        setToken: (token) => dispatch(setToken(token)),
         toggleAutorization: () => dispatch(toggleAutorizationPopap()),
         toggleRegistration: () => dispatch(toggleRegistrationPopap()),
         logout: () => dispatch(logout(ownProps)),

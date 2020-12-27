@@ -41,6 +41,11 @@ const toggleValue = (value) =>
 }
 const profile = (state = instanse, action) => {
     switch (action.type) {
+        case 'SET_TOKEN':
+            return{
+                ...state,
+                token:action.payload
+            }
         case 'AUTH_REGISTRATION_SUCCES':
             return authSucces(state, action, { showRegistrationPopap: false})
         case 'AUTH_AUTORIZATE_SUCCES':

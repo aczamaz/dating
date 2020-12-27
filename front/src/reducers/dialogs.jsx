@@ -1,6 +1,7 @@
 const instanse = {
     dialogsData:[],
-    errorLoad:false
+    errorLoad:false,
+    dialogsLoader:true
 }
 
 const dialogs = (state = instanse,action)=>
@@ -16,7 +17,8 @@ const dialogs = (state = instanse,action)=>
         case 'GET_DIALOGS_SUCCES':
             return{
                 ...state,
-                dialogsData: action.payload.data.dialogs
+                dialogsData: action.payload.data.dialogs,
+                dialogsLoader: false
             }
         default:
             return state;

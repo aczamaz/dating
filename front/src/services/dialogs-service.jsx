@@ -5,46 +5,7 @@ class DialogsService
     apiUrl = process.env.REACT_APP_API_URL;
     getDialogs(token)
     {
-        const data = { token: token };
-        return sendForm(data, this.apiUrl + 'getDialogs');
-        // return [
-        //     {
-        //         id:1,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     },
-        //     {
-        //         id: 2,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     },
-        //     {
-        //         id: 3,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     },
-        //     {
-        //         id: 4,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     },
-        //     {
-        //         id: 5,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     },
-        //     {
-        //         id: 6,
-        //         avatarSrc: img,
-        //         name: "Вы",
-        //         message: "Привет что делаешь?"
-        //     }
-        // ];
+        return sendForm({ token: token }, this.apiUrl + 'getDialogs');
     }
     getDialog()
     {
