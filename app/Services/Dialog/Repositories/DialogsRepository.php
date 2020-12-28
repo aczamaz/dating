@@ -5,6 +5,7 @@ namespace App\Services\Dialog\Repositories;
 use App\Models\Message;
 use App\Models\Dialog;
 use App\Services\User\UserService;
+use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\Facades\DB;
 
 class DialogsRepository
@@ -18,7 +19,7 @@ class DialogsRepository
         $this->UserService = $userService;
         $this->Dialog = $dialog;
     }
-    public function getDialogByUserId($id)
+    public function getDialogsByUserId($id)
     {
         return $this->Dialog
                     ->where(['user_a' => $id])
@@ -31,7 +32,7 @@ class DialogsRepository
         $id = $this->UserService->getIdByToken($token);
         if(!$id)
             return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
-        $dialogs = $this->getDialogByUserId($id);
+        $dialogs = $this->getDialogsByUserId($id);
         if (!$dialogs)
             return response()->json(['success' => false, 'errors' => ['msg' => 'Диалоги не найдены']], 400);
 
@@ -55,6 +56,43 @@ class DialogsRepository
         if(count($result) > 0)
         {
             return response()->json(['success' => true, 'dialogs' => $result], 200);
+        }
+        else
+        {
+            return response()->json(['success' => false, 'errors' => ['msg' => 'Диалоги не найдены']], 400);
+        };
+    }
+    public function getDialog($request)
+    {
+        $token = $request->input('token');
+        $dialogId = $request->input('dialogId');
+
+        $id = $this->UserService->getIdByToken($token);
+        if (!$id)
+            return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
+
+        $messages = $this->Message->where(['dialog_id' => $dialogId])->get();
+        if (!$messages)
+            return response()->json(['success' => false, 'errors' => ['msg' => 'Сообщения не найдены']], 400);
+
+        $result = [];
+        foreach ($messages as $message)
+        {
+            $user = $message->getSender;
+            $result[]=[
+                'id'=> $message->id,
+                'avatar_dir'=> $user->avatar_dir,
+                'name' => $user->name,
+                'message' => $message->message,
+                'right'=> $id == $message->sender
+            ];
+        }
+
+        $otherUserId = ($id == $messages[0]->sender) ? $messages[0]->recipient : $messages[0]->sender;
+
+        if (count($result) > 0)
+        {
+            return response()->json(['success' => true, 'messages' => $result,'mainUserId'=> $id,'otherUserId' => $otherUserId], 200);
         }
         else
         {

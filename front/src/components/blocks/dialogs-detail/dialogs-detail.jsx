@@ -1,30 +1,30 @@
 import React,{Component} from 'react';
 
-import DialogsService from '../../../services/dialogs-service.jsx';
-
 import './dialogs-detail.css';
 
-export default class DialogsDetail extends Component
+import { connect } from 'react-redux';
+import { getDialog } from '../../../actions';
+import compose from '../../../utils/compose';
+import { WithDialogsService } from '../../hoc/with-services';
+import Spinner from '../spinner';
+class DialogsDetail extends Component
 {
-    state = {
-        dialogList:[]
-    }
     componentDidMount()
     {
-        const dialogsService = new DialogsService();
-        this.setState({dialogList: dialogsService.getDialog()})
+        const {getDialog,dialogId,token} = this.props;
+        getDialog({token: token,dialogId: dialogId});
     }
     buildDialogList()
     {
-        const dialogList = this.state.dialogList;
+        const dialogList = this.props.messagesData;
         return dialogList.map(
-            ({id, avatarSrc,name,message,right})=>
+            ({ id, avatar_dir,name,message,right})=>
             {
                 const activeLeft = right?'message_left':'';
                 return(
                     <div key={id} className={`message ${activeLeft}`}>
                         <div className="message-info">
-                            <img className="message-info__img" src={avatarSrc} alt="" />
+                            <img className="message-info__img" src={avatar_dir} alt="" />
                             <div className="message-info__name">
                                 {name}
                             </div>
@@ -47,3 +47,19 @@ export default class DialogsDetail extends Component
         )
     }
 }
+const mapStateToProps = ({ profile: { token }, dialogs: { messagesData, messagesLoading } }) => {
+    return {
+        token: token,
+        messagesData: messagesData,
+        messagesLoading: messagesLoading
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        getDialog: (token) => getDialog(token, dispatch, ownProps)
+    }
+}
+export default compose(
+    WithDialogsService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(DialogsDetail);

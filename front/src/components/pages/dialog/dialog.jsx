@@ -6,11 +6,11 @@ import MenuTop from '../../blocks/menu-top';
 import DialogsDetail from '../../blocks/dialogs-detail';
 import MessagePanel from '../../blocks/message-panel';
 
-const Dialog = (props) => {
+const Dialog = ({dialogId}) => {
     return (
         <Page>
             <MenuTop page="dialogs" />
-            <DialogsDetail />
+            <DialogsDetail dialogId={dialogId} />
             <MessagePanel/>
         </Page>
     )

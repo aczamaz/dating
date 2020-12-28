@@ -21,7 +21,16 @@ const App = () =>
                 <Switch>
                     <Route path="/profile/" component={Profile}/>
                     <Route path="/" component={Main} exact/>
-                    <Route path="/dialogs/:dialog" component={Dialog} />
+                    <Route
+                        path="/dialogs/:id"
+                        component={Dialog}
+                        render={({match})=>
+                            {
+                                const {id} = match.params;
+                                return <Dialog dialogId={id} />
+                            }
+                        }
+                    />
                     <Route path="/dialogs/" component={Dialogs} exact />
                     <Route path="/dating/" component={Dating} exact />
                     <Route path="/search/" component={Search} exact />

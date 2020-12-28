@@ -8,7 +8,7 @@ import  compose  from '../../../utils/compose';
 import {WithDialogsService} from '../../hoc/with-services';
 import Spinner from '../spinner';
 
-let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoader })=>
+let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoading })=>
 {
     useEffect(
         ()=>
@@ -18,13 +18,13 @@ let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoader })=>
         [token, getDialogs]
     )
     let dialogsItems = <Spinner/>;
-    if (dialogs.length === 0 && !dialogsLoader)
+    if (dialogs.length === 0 && !dialogsLoading)
     {
         dialogsItems = (
             <div className="dialos-list__empty">нету диалогов</div>
         )
     }
-    else if(!dialogsLoader)
+    else if (!dialogsLoading)
     {
         dialogsItems = dialogs.map(
             ({ img, name, message, dialogId }) => {
@@ -52,11 +52,11 @@ let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoader })=>
     )
 }
 
-const mapStateToProps = ({ profile: { token }, dialogs: { dialogsData, dialogsLoader}}) =>{
+const mapStateToProps = ({ profile: { token }, dialogs: { dialogsData, dialogsLoading}}) =>{
     return{
         token:token,
         dialogsData: dialogsData,
-        dialogsLoader: dialogsLoader
+        dialogsLoading: dialogsLoading
     }
 }
 const mapDispatchToProps = (dispatch,ownProps) =>

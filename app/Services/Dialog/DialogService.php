@@ -15,4 +15,8 @@ class DialogService
     {
         return $this->dialogRepository->getDialogs($token);
     }
+    public function getDialog($request)
+    {
+        return $this->dialogRepository->getDialog($request);
+    }
 }

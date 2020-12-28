@@ -27,7 +27,8 @@ const authRegistration = (data, dispatch, ownProps) =>
         .then((data) => dispatch(authRegistrationSucces(data, history)))
         .catch((error) => dispatch(authRegistrationError(error)));
 }
-const authAutorizateSucces = (data, history) => {
+const authAutorizateSucces = (data, history) =>
+{
     history.push('/profile/');
     return {
         type: 'AUTH_AUTORIZATE_SUCCES',
@@ -100,7 +101,8 @@ const getDialogsSucces = (data) =>
         payload:data
     }
 }
-const getDialogsError = (error) => {
+const getDialogsError = (error) =>
+{
     return {
         type: 'GET_DIALOGS_ERROR',
         payload: error
@@ -113,6 +115,27 @@ const getDialogs = (token,dispatch,ownProps) =>
         .then((data)=>dispatch(getDialogsSucces(data)))
         .catch((error) => dispatch(getDialogsError(error)))
 }
+const getDialogSucces = (data) =>
+{
+    return {
+        type: 'GET_DIALOG_SUCCES',
+        payload: data
+    }
+}
+const getDialogError = (error) =>
+{
+    return {
+        type: 'GET_DIALOG_ERROR',
+        payload: error
+    }
+}
+const getDialog = (data, dispatch, ownProps) =>
+{
+    const { dialogsService } = ownProps;
+    dialogsService.getDialog(data)
+        .then((data) => dispatch(getDialogSucces(data)))
+        .catch((error) => dispatch(getDialogError(error)))
+}
 export {
     setToken,
     authRegistration,
@@ -121,5 +144,6 @@ export {
     toggleAutorizationPopap,
     logout,
     getProfileInfoByToken,
-    getDialogs
+    getDialogs,
+    getDialog
 };
