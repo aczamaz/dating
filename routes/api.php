@@ -17,3 +17,5 @@ Route::post('/getUserByToken', 'App\Http\Controllers\UserController@getUserByTok
 
 Route::post('/getDialogs', 'App\Http\Controllers\DialogController@getDialogs');
 Route::post('/getDialog', 'App\Http\Controllers\DialogController@getDialog');
+
+Route::post('/getDatingUsers', 'App\Http\Controllers\DatingController@getDatingUsers');

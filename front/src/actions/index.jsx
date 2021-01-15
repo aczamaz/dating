@@ -136,6 +136,43 @@ const getDialog = (data, dispatch, ownProps) =>
         .then((data) => dispatch(getDialogSucces(data)))
         .catch((error) => dispatch(getDialogError(error)))
 }
+
+const getDatingUsersSucces = (data)=>
+{
+    return{
+        type:'GET_DATING_USERS_SUCCES',
+        payload: data
+    }
+}
+
+const getDatingUsersError = (error) =>
+{
+    return{
+        type: 'GET_DATING_USERS_ERROR',
+        payload: error
+    }
+}
+
+const getDatingUsers = (data, dispatch, ownProps) =>
+{
+    const { datingService } = ownProps;
+    datingService.getDatingUsers(data)
+        .then((data)=>dispatch(getDatingUsersSucces(data)))
+        .catch((error) => dispatch(getDatingUsersError(error)));
+}
+
+const getNextUser = ()=>
+{
+    return{
+        type:'GET_NEXT_USER'
+    }
+}
+const getPrevUser = () =>
+{
+    return{
+        type: 'GET_PREV_USER'
+    }
+}
 export {
     setToken,
     authRegistration,
@@ -145,5 +182,8 @@ export {
     logout,
     getProfileInfoByToken,
     getDialogs,
-    getDialog
+    getDialog,
+    getDatingUsers,
+    getNextUser,
+    getPrevUser
 };

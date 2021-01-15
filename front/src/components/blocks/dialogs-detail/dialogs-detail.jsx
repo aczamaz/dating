@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { useEffect} from 'react';
 
 import './dialogs-detail.css';
 
@@ -6,22 +6,32 @@ import { connect } from 'react-redux';
 import { getDialog } from '../../../actions';
 import compose from '../../../utils/compose';
 import { WithDialogsService } from '../../hoc/with-services';
+import { isNull } from 'lodash';
 import Spinner from '../spinner';
-class DialogsDetail extends Component
+
+let DialogsDetail = ({ token, getDialog, messagesData: messages, messagesLoading, dialogId }) =>
 {
-    componentDidMount()
-    {
-        const {getDialog,dialogId,token} = this.props;
-        getDialog({token: token,dialogId: dialogId});
+    useEffect(
+        () => {
+            if (!isNull(token) && !isNull(dialogId))
+                getDialog({ token: token, dialogId: dialogId })
+            let objDiv = document.querySelector(".dialogs-detail");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        },
+        [token, getDialog,dialogId]
+    )
+    let messagesItems = <Spinner/>;
+    if (messages.length === 0 && !messagesLoading) {
+        messagesItems = (
+            <div className="dialos-detail__empty">нету диалогов</div>
+        )
     }
-    buildDialogList()
+    else if (!messagesLoading)
     {
-        const dialogList = this.props.messagesData;
-        return dialogList.map(
-            ({ id, avatar_dir,name,message,right})=>
-            {
-                const activeLeft = right?'message_left':'';
-                return(
+        messagesItems = messages.map(
+            ({ id, avatar_dir, name, message, right }) => {
+                const activeLeft = right ? 'message_left' : '';
+                return (
                     <div key={id} className={`message ${activeLeft}`}>
                         <div className="message-info">
                             <img className="message-info__img" src={avatar_dir} alt="" />
@@ -37,16 +47,13 @@ class DialogsDetail extends Component
             }
         )
     }
-    render()
-    {
-        const messages = this.buildDialogList();
-        return(
-            <div className="dialogs-detail">
-                {messages}
-            </div>
-        )
-    }
+    return(
+        <div className="dialogs-detail">
+            {messagesItems}
+        </div>
+    )
 }
+
 const mapStateToProps = ({ profile: { token }, dialogs: { messagesData, messagesLoading } }) => {
     return {
         token: token,

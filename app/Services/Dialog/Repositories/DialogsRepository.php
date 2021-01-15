@@ -44,6 +44,8 @@ class DialogsRepository
             $otherUser = ($dialog->user_b == $mainUser->id) ? $dialog->getUserA : $dialog->getUserB;
             $lastDialog = $this->Message->where(['dialog_id' => $dialog->id])->orderByDesc('id')->limit(1)->get()[0];
             $name = ($lastDialog->sender === $id) ? 'Вы' : $otherUser->name;
+            if(strlen($lastDialog->message) > 100)
+                $lastDialog->message = mb_substr($lastDialog->message,0,150)."...";
             $result[]=[
                 'img'=> '/storage/' .$otherUser->avatar_dir,
                 'name' => $name,
@@ -81,7 +83,7 @@ class DialogsRepository
             $user = $message->getSender;
             $result[]=[
                 'id'=> $message->id,
-                'avatar_dir'=> $user->avatar_dir,
+                'avatar_dir'=> '/storage/'. $user->avatar_dir,
                 'name' => $user->name,
                 'message' => $message->message,
                 'right'=> $id == $message->sender

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const sendForm = async (data,url) =>
 {
+    console.log(data);
     const formData = new FormData();
     for (let key in data)
     {

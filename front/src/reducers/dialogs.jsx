@@ -1,7 +1,7 @@
 const instanse = {
     dialogsData:[],
     dialogsError:null,
-    dialogsLoader:true,
+    dialogsLoading:true,
     messagesData:[],
     messagesError:null,
     messagesLoading:true,
@@ -14,13 +14,12 @@ const dialogs = (state = instanse,action)=>
     switch(action.type)
     {
         case 'GET_DIALOGS_ERROR':
-            console.log(action.payload);
             return{
                 ...state,
-                dialogsError: action.payload.data.errors.msg,
+                dialogsError: action.payload.data.errors,
+                dialogsLoading: false
             }
         case 'GET_DIALOGS_SUCCES':
-            console.log(action.payload);
             return{
                 ...state,
                 dialogsData: action.payload.data.dialogs,

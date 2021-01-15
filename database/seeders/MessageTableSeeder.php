@@ -36,21 +36,26 @@ class MessageTableSeeder extends Seeder
 
         foreach($dialogs as $dialog)
         {
-            foreach ($users as $sender)
+            for($i = 0; $i < 10; $i++)
             {
-                foreach ($users as $recipient)
+                $sender = 0;
+                $recipient = 0;
+                if($i % 2 == 0)
                 {
-                    if($sender->id != $recipient->id)
-                    {
-                        Message::factory()->state(
-                            [
-                                'sender'=>$sender->id,
-                                'recipient' => $recipient->id,
-                                'dialog_id' => $dialog->id
-                            ]
-                        )->create();
-                    }
+                    $sender = $dialog->user_a;
+                    $recipient = $dialog->user_b;
                 }
+                else {
+                    $sender = $dialog->user_b;
+                    $recipient = $dialog->user_a;
+                }
+                Message::factory()->state(
+                    [
+                        'sender'=> $sender,
+                        'recipient' => $recipient,
+                        'dialog_id' => $dialog->id
+                    ]
+                )->create();
             }
         }
     }

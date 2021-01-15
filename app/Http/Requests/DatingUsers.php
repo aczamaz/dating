@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DialogRequest extends FormRequest
+class DatingUsers extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class DialogRequest extends FormRequest
     public function rules()
     {
         return [
-            'token' => 'required',
-            'dialogId' => 'required'
+            'token' => 'required'
         ];
     }
 }

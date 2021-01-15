@@ -53,3 +53,10 @@
     font-size: 15px;
     color:#E98E8E;
 }
+.dialos-detail__empty
+{
+    color:#A87B7B;
+    margin: 30px auto;
+    text-align: center;
+    font-size:30px;
+}

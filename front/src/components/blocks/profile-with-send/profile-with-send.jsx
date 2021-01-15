@@ -9,9 +9,10 @@ export default class ProfileWithSend extends Component
 {
     render()
     {
+        const { userData } = this.props;
         return (
             <div className="profile-conteiner">
-                <ProfileInfo />
+                <ProfileInfo userData={userData}/>
                 <button className="send-message bnt-hover-active">
                     <MessageIcon />
                 </button>

@@ -7,13 +7,15 @@ import { getDialogs } from '../../../actions';
 import  compose  from '../../../utils/compose';
 import {WithDialogsService} from '../../hoc/with-services';
 import Spinner from '../spinner';
+import { isNull } from 'lodash';
 
 let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoading })=>
 {
     useEffect(
         ()=>
         {
-            getDialogs(token)
+            if(!isNull(token))
+                getDialogs(token)
         },
         [token, getDialogs]
     )

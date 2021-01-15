@@ -22,14 +22,20 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $gender = (rand(0, 100) > 50) ? 'm' : 'f';
+        $name = "";
+        if($gender === 'f')
+            $name = $this->faker->unique()->firstNameFemale;
+        else
+            $name = $this->faker->unique()->firstNameMale;
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'name' => $name,
+            'email' => "$name@gmail.com",
             'email_verified_at' => now(),
             'password' => '123456', // password
             'remember_token' => Str::random(10),
             'age' => rand(19,29),
-            'gender' => (rand(0,100) > 50)?'m':'f',
+            'gender' => $gender,
             'avatar_dir' => 'avatar.png'
         ];
     }
