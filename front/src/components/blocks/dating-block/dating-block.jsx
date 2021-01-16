@@ -4,13 +4,13 @@ import './dating-block.css';
 import ProfileWithSend from '../profile-with-send';
 
 import { connect } from 'react-redux';
-import { getDatingUsers, getNextUser } from '../../../actions';
+import { getDatingUsers, getNextUser, getPrevUser } from '../../../actions';
 import { WithDatingServices } from '../../hoc/with-services';
 import compose from '../../../utils/compose';
 import Spinner from '../spinner';
 import { isNull } from 'lodash';
 
-const DatingBlock = ({ token, userFront, getNextUser, getDatingUsers}) =>
+const DatingBlock = ({ token, userFront, getNextUser, getPrevUser, getDatingUsers}) =>
 {
     useEffect(
         () => {
@@ -30,11 +30,17 @@ const DatingBlock = ({ token, userFront, getNextUser, getDatingUsers}) =>
     {
         userData = (
             <div className="dating-block">
-                <button className="button-switch bnt-hover-active button-switch__reverse">
+                <button
+                    className="button-switch bnt-hover-active button-switch__reverse"
+                    onClick={() => getPrevUser()}
+                >
                     <ArrowIcon />
                 </button>
                 <ProfileWithSend userData={userFront}/>
-                <button className="button-switch bnt-hover-active" onClick={()=>getNextUser()}>
+                <button
+                    className="button-switch bnt-hover-active"
+                    onClick={()=>getNextUser()}
+                >
                     <ArrowIcon />
                 </button>
             </div>
@@ -53,7 +59,8 @@ const mapDispatchToProps = (dispatch,ownProps) =>
 {
     return{
         getDatingUsers: (token) => getDatingUsers(token, dispatch, ownProps),
-        getNextUser: () => dispatch(getNextUser())
+        getNextUser: () => dispatch(getNextUser()),
+        getPrevUser: () => dispatch(getPrevUser())
     }
 }
 
