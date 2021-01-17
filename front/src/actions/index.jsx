@@ -173,6 +173,42 @@ const getPrevUser = () =>
         type: 'GET_PREV_USER'
     }
 }
+
+const showPopapNewMessage = (userId)=>
+{
+    return{
+        type:'SHOW_POPAP_NEW_MESSAGE',
+        payload: userId
+    }
+}
+
+const hidePopapNewMessage = () =>
+{
+    return{
+        type:'HIDE_POPAP_NEW_MESSAGE'
+    }
+}
+const sendNewMessageError = (error) =>
+{
+    return{
+        type:'SEND_NEW_MESSAGE_ERROR',
+        payload:error
+    }
+}
+const sendNewMessageSuccess = (data) =>
+{
+    return{
+        type:'SEND_NEW_MESSAGE_SUCCESS',
+        payload:data
+    }
+}
+const sendNewMessage = (data, dispatch, ownProps) =>
+{
+    const { dialogsService, otherUserId, token } = ownProps;
+    dialogsService.sendMessage({ ...data, otherUserId: otherUserId, token: token })
+        .then((data) => dispatch(sendNewMessageSuccess(data)))
+        .catch((error) => dispatch(sendNewMessageError(error)));
+}
 export {
     setToken,
     authRegistration,
@@ -185,5 +221,8 @@ export {
     getDialog,
     getDatingUsers,
     getNextUser,
-    getPrevUser
+    getPrevUser,
+    showPopapNewMessage,
+    hidePopapNewMessage,
+    sendNewMessage
 };

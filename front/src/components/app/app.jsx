@@ -11,6 +11,7 @@ import SearchDetail from '../pages/search-detail';
 import Main from '../pages/main';
 import Registration from '../blocks/registration';
 import Autorization from '../blocks/autorization';
+import NewMessage from '../blocks/new-message';
 import './app.css';
 
 const App = () =>
@@ -38,6 +39,7 @@ const App = () =>
             <Footer/>
             <Registration />
             <Autorization />
+            <NewMessage />
         </div>
     )
 }

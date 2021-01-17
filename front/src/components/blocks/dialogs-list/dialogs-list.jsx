@@ -54,7 +54,8 @@ let DialogsList = ({ token, getDialogs, dialogsData: dialogs, dialogsLoading })=
     )
 }
 
-const mapStateToProps = ({ profile: { token }, dialogs: { dialogsData, dialogsLoading}}) =>{
+const mapStateToProps = ({ profile: { token }, dialogs: { dialogsData, dialogsLoading}}) =>
+{
     return{
         token:token,
         dialogsData: dialogsData,

@@ -15,8 +15,11 @@
     border: 1px solid #ECCACA;
     color: #b97272;
     font-family:inherit;
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 3px;
+    padding-left:5px;
+    padding-right:5px;
+    padding-top:5px;
 }
 .new-message__inner
 {
@@ -24,4 +27,9 @@
     padding-right: 20px;
     padding-top: 13px;
     padding-bottom: 15px;
+}
+.new-message__text::placeholder
+{
+    color:#c56161;
+    font-size: 20px;
 }

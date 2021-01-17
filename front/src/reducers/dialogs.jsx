@@ -6,7 +6,8 @@ const instanse = {
     messagesError:null,
     messagesLoading:true,
     mainUserId:null,
-    otherUserId:null
+    otherUserId:null,
+    showDialogPupup:false
 }
 
 const dialogs = (state = instanse,action)=>
@@ -38,6 +39,25 @@ const dialogs = (state = instanse,action)=>
                 mainUserId: action.payload.data.mainUserId,
                 otherUserId: action.payload.data.otherUserId,
                 messagesLoading: false
+            }
+        case 'SHOW_POPAP_NEW_MESSAGE':
+            return{
+                ...state,
+                showDialogPupup:true,
+                otherUserId: action.payload
+            }
+        case 'HIDE_POPAP_NEW_MESSAGE':
+            return{
+                showDialogPupup: false,
+            }
+        case 'SEND_NEW_MESSAGE_SUCCESS':
+            return{
+                ...state,
+                showDialogPupup: false,
+            }
+        case 'SEND_NEW_MESSAGE_ERROR':
+            return{
+                ...state
             }
         default:
             return state;

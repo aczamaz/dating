@@ -4,19 +4,58 @@ import BackgroundPopap from '../../containers/background-popap';
 import FormButton from '../../items/form-button';
 import { stopPropagation } from '../../../utils';
 import './new-message.css';
-const NewMessage = ({show}) =>
+
+import { connect } from 'react-redux';
+import { hidePopapNewMessage, sendNewMessage } from '../../../actions';
+import SmartForm from '../../hoc/smart-form';
+import { checkNewMessageForm } from './validation';
+import { compose } from '../../../utils';
+import { WithDialogsService } from '../../hoc/with-services';
+
+let NewMessage = ({ showPopap, hidePopap, setValue, sendMessage, onSend, errors, otherUserId }) =>
 {
     return(
-        <BackgroundPopap show={show}>
-            <div className='new-message' onClick={(e)=>stopPropagation(e)}>
-                <textarea name="" id="" className='new-message__text focus-outline-none'>
+        <BackgroundPopap show={showPopap} toglePopap={()=>hidePopap()}>
+            <form
+                className='new-message'
+                onClick={(e) => stopPropagation(e)}
+                onSubmit={(e) => onSend(e, sendMessage)}
+            >
+                <textarea
+                    name='message'
+                    className='new-message__text focus-outline-none'
+                    onChange={setValue}
+                    placeholder={errors.message ? errors.message:""}
+                >
                 </textarea>
                 <div className="new-message__inner">
                     <FormButton name="Отправить" />
                 </div>
-            </div>
+            </form>
         </BackgroundPopap>
     );
 };
 
-export default NewMessage;
+NewMessage = SmartForm(NewMessage, checkNewMessageForm);
+
+const mapDispatchToProps = (dispatch,ownProps)=>
+{
+    return{
+        hidePopap: () => dispatch(hidePopapNewMessage()),
+        sendMessage: (data) => sendNewMessage(data,dispatch,ownProps)
+    }
+};
+
+const mapStateToProps = ({ dialogs: { showDialogPupup, otherUserId }, profile: { token }}) =>
+{
+    return{
+        showPopap: showDialogPupup,
+        otherUserId: otherUserId,
+        token: token
+    }
+}
+
+export default compose(
+    WithDialogsService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(NewMessage);

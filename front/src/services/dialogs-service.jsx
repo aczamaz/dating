@@ -10,5 +10,9 @@ class DialogsService
     {
         return sendForm(data, this.apiUrl + 'getDialog');
     }
+    sendMessage(data)
+    {
+        return sendForm(data, this.apiUrl + 'sendMessage');
+    }
 }
 export default DialogsService;

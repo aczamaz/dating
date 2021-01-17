@@ -27,6 +27,14 @@ class DialogsRepository
                     ->orderByDesc('id')
                     ->get();
     }
+    public function getDialogId($userA,$userB)
+    {
+        return $this->Dialog
+            ->where(['user_a' => $userA, 'user_b' => $userB])
+            ->orWhere(['user_a' => $userB, 'user_b' => $userA])
+            ->first()
+            ->id;
+    }
     public function getDialogs($token)
     {
         $id = $this->UserService->getIdByToken($token);

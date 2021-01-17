@@ -18,20 +18,12 @@ const changeIndex = (index,lenght,step) =>
         return upBorder;
     return newIndex;
 }
-const getNextUser = (state, users,next = true) =>
+const getNextUser = (state, users,count = 0) =>
 {
-    let user = null, newUserIndex = state.userIndex;
-    if(next)
-    {
-        newUserIndex = changeIndex(newUserIndex, users.length,1);
+    let user = null,
+        userIndex = state.userIndex,
+        newUserIndex = changeIndex(userIndex, users.length, count);
         user = users[newUserIndex];
-    }
-    else
-    {
-        newUserIndex = changeIndex(newUserIndex, users.length,-1);
-        user = users[newUserIndex];
-    }
-    console.log(users);
     return {
         ...state,
         users: [...users],
@@ -44,9 +36,9 @@ const dating = (state = instanse, action) =>
     switch (action.type)
     {
         case 'GET_PREV_USER':
-            return getNextUser(state, state.users, false)
+            return getNextUser(state, state.users, -1)
         case 'GET_NEXT_USER':
-            return getNextUser(state, state.users)
+            return getNextUser(state, state.users,1)
         case 'GET_DATING_USERS_ERROR':
             return{
                 ...state,
