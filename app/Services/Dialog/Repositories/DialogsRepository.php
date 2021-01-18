@@ -30,8 +30,8 @@ class DialogsRepository
     public function getDialogId($userA,$userB)
     {
         return $this->Dialog
-            ->where(['user_a' => $userA, 'user_b' => $userB])
-            ->orWhere(['user_a' => $userB, 'user_b' => $userA])
+            ->where([['user_a' , '=', $userA],[ 'user_b','=',$userB]])
+            ->orWhere([['user_a', '=', $userB],[ 'user_b', '=', $userA]])
             ->first()
             ->id;
     }

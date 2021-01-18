@@ -17,11 +17,12 @@ export const SmartForm = (Wtaper, checks = undefined) => {
             this.setState({ errors: newRrrors });
             return Object.keys(newRrrors).length;
         };
-        handle = (e,func) => {
+        handle = (e,func,data = {}) => {
             e.preventDefault();
             if (this.checkAllFields()) return false;
             const { values } = this.state;
-            func(values);
+            const newValues = { ...values,...data};
+            func(newValues);
         };
         getTargetProps = (target) => {
             const { type, name } = target;

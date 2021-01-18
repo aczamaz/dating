@@ -204,8 +204,8 @@ const sendNewMessageSuccess = (data) =>
 }
 const sendNewMessage = (data, dispatch, ownProps) =>
 {
-    const { dialogsService, otherUserId, token } = ownProps;
-    dialogsService.sendMessage({ ...data, otherUserId: otherUserId, token: token })
+    const { dialogsService } = ownProps;
+    dialogsService.sendMessage( data )
         .then((data) => dispatch(sendNewMessageSuccess(data)))
         .catch((error) => dispatch(sendNewMessageError(error)));
 }

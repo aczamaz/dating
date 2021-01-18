@@ -12,14 +12,14 @@ import { checkNewMessageForm } from './validation';
 import { compose } from '../../../utils';
 import { WithDialogsService } from '../../hoc/with-services';
 
-let NewMessage = ({ showPopap, hidePopap, setValue, sendMessage, onSend, errors, otherUserId }) =>
+let NewMessage = ({ showPopap, hidePopap, setValue, sendMessage, onSend, errors, otherUserId, token }) =>
 {
     return(
         <BackgroundPopap show={showPopap} toglePopap={()=>hidePopap()}>
             <form
                 className='new-message'
                 onClick={(e) => stopPropagation(e)}
-                onSubmit={(e) => onSend(e, sendMessage)}
+                onSubmit={(e) => onSend(e, sendMessage, { otherUserId: otherUserId,token: token})}
             >
                 <textarea
                     name='message'

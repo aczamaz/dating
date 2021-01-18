@@ -35,8 +35,8 @@ class DialogsHandler
     {
         return $this->Message
                     ->fill([
-                            'user_a'=> $userA,
-                            'user_b'=> $userB,
+                            'sender'=> $userA,
+                            'recipient'=> $userB,
                             'message'=> $message,
                             'dialog_id'=> $dialogId
                         ])->save();
