@@ -1,7 +1,8 @@
 import img from './avatar.png';
-
+import sendForm from '../utils/send-form';
 export default class SearchService
 {
+    apiUrl = process.env.REACT_APP_API_URL;
     getResult()
     {
         const result = [];
@@ -16,5 +17,9 @@ export default class SearchService
             )
         }
         return result;
+    }
+    searchUsers(data)
+    {
+        return sendForm(data, this.apiUrl + 'searchUsers');
     }
 }

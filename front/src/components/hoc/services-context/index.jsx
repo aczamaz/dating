@@ -2,6 +2,7 @@ import { AuthServiceProvider, AuthServiceConsumer } from './auth-services-contex
 import { UserServiceProvider, UserServiceConsumer } from './user-services-context';
 import { DialogsServiceProvider, DialogsServiceConsumer } from './dialogs-services-context';
 import { DatingServiceProvider, DatingServiceConsumer } from './dating-services-context';
+import { SearchServiceProvider, SearchServiceConsumer } from './search-services-context';
 
 export {
     AuthServiceProvider,
@@ -11,5 +12,7 @@ export {
     DialogsServiceProvider,
     DialogsServiceConsumer,
     DatingServiceProvider,
-    DatingServiceConsumer
+    DatingServiceConsumer,
+    SearchServiceProvider,
+    SearchServiceConsumer
 };

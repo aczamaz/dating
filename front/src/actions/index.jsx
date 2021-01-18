@@ -209,6 +209,30 @@ const sendNewMessage = (data, dispatch, ownProps) =>
         .then((data) => dispatch(sendNewMessageSuccess(data)))
         .catch((error) => dispatch(sendNewMessageError(error)));
 }
+
+const searchUsersError = (error) =>
+{
+    return{
+        type:'SEARCH_USERS_ERROR',
+        payload:error
+    }
+}
+
+const searchUsersSuccess = (data) =>
+{
+    return{
+        type:'SEARCH_USERS_SUCCESS',
+        payload:data
+    }
+}
+
+const searchUsers = (data, dispatch, ownProps) =>
+{
+    const { searchService } = ownProps;
+    searchService.searchUsers(data)
+        .then((data) => dispatch(searchUsersSuccess(data)))
+        .catch((error) => dispatch(searchUsersError(error)))
+}
 export {
     setToken,
     authRegistration,
@@ -224,5 +248,6 @@ export {
     getPrevUser,
     showPopapNewMessage,
     hidePopapNewMessage,
-    sendNewMessage
+    sendNewMessage,
+    searchUsers
 };

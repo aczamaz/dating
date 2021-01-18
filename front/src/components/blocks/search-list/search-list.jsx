@@ -1,28 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchService from '../../../services/search-service';
 import './search-list.css';
-const SearchList = () =>
+
+import { connect } from 'react-redux';
+import Spinner from '../spinner';
+const SearchList = ({users,loading}) =>
 {
-    const searchSerivce = new SearchService();
-    const result = searchSerivce.getResult();
-    const renderItems = result.map(
-        ({id, avatar, name }) => {
-            return (
-                <Link className="search-list__item" to={`/search/${id}/`} key={id}>
-                    <img src={avatar} alt="" className="search-list__img" />
-                    <div className="search-list__name">{name}</div>
-                </Link>
-            )
-        }
-    );
+    let usersItem = <Spinner/>;
+    if (users.length === 0 && !loading) {
+        usersItem = (
+            <div className="search-list__empty">нету пользователей</div>
+        )
+    }
+    else
+    {
+        usersItem = users.map(
+            ({id, avatar, name }) => {
+                return (
+                    <Link className="search-list__item" to={`/search/${id}/`} key={id}>
+                        <img src={avatar} alt="" className="search-list__img" />
+                        <div className="search-list__name">{name}</div>
+                    </Link>
+                )
+            }
+        );
+    }
     return(
        <div className='search-list'>
-           {
-                renderItems
-           }
+            {usersItem}
        </div>
     );
 };
-
-export default SearchList;
+const mapStateToProps = ({ search: { users, loading}})=>
+{
+    return{
+        users: users,
+        loading: loading
+    }
+}
+export default connect( mapStateToProps,null )(SearchList);

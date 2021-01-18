@@ -31,3 +31,10 @@
     line-height: 14px;
     margin-top:4px;
 }
+.search-list__empty
+{
+    color:#A87B7B;
+    margin: 30px auto;
+    text-align: center;
+    font-size:30px;
+}
