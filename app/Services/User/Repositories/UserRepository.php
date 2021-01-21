@@ -26,14 +26,11 @@ class UserRepository
     public function getUserByToken($token)
     {
         $users = $this->user->where('remember_token', $token)->get();
+
         if($users->count())
-        {
             return response()->json(['success' => true, 'userData' => $this->getUserDataFormated($users)], 200);
-        }
         else
-        {
             return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
-        }
     }
     public function getIdByToken($token)
     {
@@ -43,5 +40,15 @@ class UserRepository
         if($user->count())
             return $user[0]->id;
         return false;
+    }
+    public function getUserById($request)
+    {
+        $id = $request->input('id');
+        $user = $this->user->where('id', $id)->first()->get();
+
+        if ($user)
+            return response()->json(['success' => true, 'userData' => $user], 200);
+        else
+            return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
     }
 }

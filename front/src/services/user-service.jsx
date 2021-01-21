@@ -8,5 +8,9 @@ class UserService
         const data = {token:token};
         return sendForm(data, this.apiUrl + 'getUserByToken');
     }
+    getUserById = (data) =>
+    {
+        return sendForm(data, this.apiUrl + 'getUserById');
+    }
 }
 export default UserService;

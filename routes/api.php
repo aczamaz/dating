@@ -14,6 +14,7 @@ Route::post('/registration', 'App\Http\Controllers\AuthController@registration')
 Route::post('/autorization', 'App\Http\Controllers\AuthController@autorization');
 
 Route::post('/getUserByToken', 'App\Http\Controllers\UserController@getUserByToken');
+Route::post('/getUserById', 'App\Http\Controllers\UserController@getUserById');
 
 Route::post('/getDialogs', 'App\Http\Controllers\DialogController@getDialogs');
 Route::post('/getDialog', 'App\Http\Controllers\DialogController@getDialog');

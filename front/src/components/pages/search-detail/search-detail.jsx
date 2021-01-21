@@ -6,12 +6,12 @@ import SearchDetailBlock from '../../blocks/search-detail-block';
 import './search-detail.css';
 
 
-const SearchDetail = () =>
+const SearchDetail = ({userId}) =>
 {
     return(
         <Page>
             <MenuTop page="search" />
-            <SearchDetailBlock/>
+            <SearchDetailBlock userId={userId} />
         </Page>
     );
 };

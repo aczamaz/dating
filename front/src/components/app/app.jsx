@@ -34,7 +34,15 @@ const App = () =>
                     />
                     <Route path="/dating/" component={Dating} exact />
                     <Route path="/search/" component={Search} exact />
-                    <Route path="/search/:id" component={SearchDetail}/>
+                    <Route
+                        path="/search/:id"
+                        render={({match})=>
+                            {
+                                const {id} = match.params;
+                                return (<SearchDetail userId={id}/>)
+                            }
+                        }
+                    />
                 </Switch>
             <Footer/>
             <Registration />
