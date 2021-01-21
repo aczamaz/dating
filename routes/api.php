@@ -19,3 +19,4 @@ Route::post('/getDialogs', 'App\Http\Controllers\DialogController@getDialogs');
 Route::post('/getDialog', 'App\Http\Controllers\DialogController@getDialog');
 Route::post('/sendMessage','App\Http\Controllers\DialogController@sendMessage');
 Route::post('/getDatingUsers', 'App\Http\Controllers\DatingController@getDatingUsers');
+Route::post('/searchUsers', 'App\Http\Controllers\SearchController@searchUsers');

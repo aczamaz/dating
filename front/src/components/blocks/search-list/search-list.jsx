@@ -15,10 +15,10 @@ const SearchList = ({users,loading}) =>
     else
     {
         usersItem = users.map(
-            ({id, avatar, name }) => {
+            ({ id, avatar_dir, name }) => {
                 return (
                     <Link className="search-list__item" to={`/search/${id}/`} key={id}>
-                        <img src={avatar} alt="" className="search-list__img" />
+                        <img src={avatar_dir} alt="" className="search-list__img" />
                         <div className="search-list__name">{name}</div>
                     </Link>
                 )

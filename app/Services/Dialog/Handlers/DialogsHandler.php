@@ -12,7 +12,7 @@ class DialogsHandler
     private $Dialog;
     private $Message;
     private $UserService;
-    private $DialogCheckers;
+    private $dialogRepository;
 
     public function __construct(
         Dialog $dialog,
@@ -24,7 +24,7 @@ class DialogsHandler
         $this->Dialog = $dialog;
         $this->Message = $message;
         $this->UserService = $userService;
-        $this->DialogRepository = $dialogRepository;
+        $this->dialogRepository = $dialogRepository;
     }
     public function createDialog($userA,$userB)
     {
@@ -48,7 +48,7 @@ class DialogsHandler
         $myId = $this->UserService->getIdByToken($request->input('token'));
         if (!$myId)
             return response()->json(['success' => false, 'errors' => ['msg' => 'пользователь не найден']], 400);
-        $dialogId = $this->DialogRepository->getDialogId($myId, $request->input('otherUserId'));
+        $dialogId = $this->dialogRepository->getDialogId($myId, $request->input('otherUserId'));
 
         if(!$dialogId)
         {
