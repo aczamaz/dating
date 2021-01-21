@@ -22,6 +22,6 @@ class UserController extends Controller
     }
     public function getUserById(UserByIdRequest $userByIdRequest)
     {
-        return $this->userService->getUserById($userByIdRequest)
+        return $this->userService->getUserById($userByIdRequest);
     }
 }

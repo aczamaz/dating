@@ -1,7 +1,8 @@
 const instance = {
     users:[],
     error:false,
-    loading:true
+    loading:true,
+    user:{}
 };
 
 const search = (state = instance,action) =>
@@ -17,6 +18,16 @@ const search = (state = instance,action) =>
             return{
                 ...state,
                 error:true
+            }
+        case 'GET_USER_BY_ID_SUCCESS':
+            return{
+                ...state,
+                user: action.payload.data.userData
+            }
+        case 'GET_USER_BY_ID_ERROR':
+            return {
+                ...state,
+                error: true
             }
         default:
             return{

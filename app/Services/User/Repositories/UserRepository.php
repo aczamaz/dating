@@ -44,8 +44,8 @@ class UserRepository
     public function getUserById($request)
     {
         $id = $request->input('id');
-        $user = $this->user->where('id', $id)->first()->get();
-
+        $user = $this->user->where('id', $id)->get()->first();
+        $user->avatar_dir = '/storage/app/' . $user->avatar_dir;
         if ($user)
             return response()->json(['success' => true, 'userData' => $user], 200);
         else

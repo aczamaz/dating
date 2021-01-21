@@ -68,7 +68,6 @@ const logout = (ownProps) =>
         type:'LOGOUT'
     }
 }
-
 const getProfileInfoByTokenSucees = (data, history) =>
 {
     if (window.location.pathname === "/")
@@ -78,7 +77,6 @@ const getProfileInfoByTokenSucees = (data, history) =>
         payload: data
     }
 }
-
 const getProfileInfoByTokenError = (error) =>
 {
     return{
@@ -209,7 +207,6 @@ const sendNewMessage = (data, dispatch, ownProps) =>
         .then((data) => dispatch(sendNewMessageSuccess(data)))
         .catch((error) => dispatch(sendNewMessageError(error)));
 }
-
 const searchUsersError = (error) =>
 {
     return{
@@ -217,7 +214,6 @@ const searchUsersError = (error) =>
         payload:error
     }
 }
-
 const searchUsersSuccess = (data) =>
 {
     return{
@@ -225,13 +221,33 @@ const searchUsersSuccess = (data) =>
         payload:data
     }
 }
-
 const searchUsers = (data, dispatch, ownProps) =>
 {
     const { searchService } = ownProps;
     searchService.searchUsers(data)
         .then((data) => dispatch(searchUsersSuccess(data)))
         .catch((error) => dispatch(searchUsersError(error)))
+}
+const getUserByIdSuccess = (data) =>
+{
+    return{
+        type:'GET_USER_BY_ID_SUCCESS',
+        payload:data
+    }
+}
+const getUserByIdError = (error) =>
+{
+    return {
+        type: 'GET_USER_BY_ID_ERROR',
+        payload: error
+    }
+}
+const getUserById = (data, dispatch, ownProps) =>
+{
+    const { userService } = ownProps;
+    userService.getUserById(data)
+        .then((data) => dispatch(getUserByIdSuccess(data)))
+        .catch((error) => dispatch(getUserByIdError(error)))
 }
 export {
     setToken,
@@ -249,5 +265,6 @@ export {
     showPopapNewMessage,
     hidePopapNewMessage,
     sendNewMessage,
-    searchUsers
+    searchUsers,
+    getUserById
 };
