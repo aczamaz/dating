@@ -249,6 +249,14 @@ const getUserById = (data, dispatch, ownProps) =>
         .then((data) => dispatch(getUserByIdSuccess(data)))
         .catch((error) => dispatch(getUserByIdError(error)))
 }
+const newMessage = (data) =>
+{
+    console.log(data);
+    return{
+        type:'NEW_MESSAGE',
+        payload:data
+    }
+}
 export {
     setToken,
     authRegistration,
@@ -266,5 +274,6 @@ export {
     hidePopapNewMessage,
     sendNewMessage,
     searchUsers,
-    getUserById
+    getUserById,
+    newMessage
 };

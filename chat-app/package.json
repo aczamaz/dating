@@ -1,0 +1,19 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "app for chat dating site",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aczamaz",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "curl": "^0.1.4",
+    "expess": "0.0.1-security",
+    "express": "^4.17.1",
+    "socket.io": "^3.1.0"
+  }
+}

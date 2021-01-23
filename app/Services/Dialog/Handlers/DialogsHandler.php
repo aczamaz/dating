@@ -57,7 +57,7 @@ class DialogsHandler
         $result = $this->createMessage($myId, $otherUserId,$message,$dialogId);
         if ($result)
         {
-            return response()->json(['success' => true], 200);
+            return response()->json(['success' => true, 'messageId' => $result, 'myId' => $myId], 200);
         }
         else
         {
