@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useRef} from 'react';
 
 import './dialogs-detail.css';
 
@@ -11,15 +11,17 @@ import Spinner from '../spinner';
 
 let DialogsDetail = ({ token, getDialog, messagesData: messages, messagesLoading, dialogId }) =>
 {
+    const messagesRef = useRef(null);
     useEffect(
         () => {
             if (!isNull(token) && !isNull(dialogId))
-                getDialog({ token: token, dialogId: dialogId })
-            let objDiv = document.querySelector(".dialogs-detail");
-            objDiv.scrollTop = objDiv.scrollHeight;
+                getDialog({ token: token, dialogId: dialogId });
         },
         [token, getDialog,dialogId]
     )
+    useEffect(() => {
+        messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
+    }, [messages])
     let messagesItems = <Spinner/>;
     if (messages.length === 0 && !messagesLoading) {
         messagesItems = (
@@ -48,7 +50,10 @@ let DialogsDetail = ({ token, getDialog, messagesData: messages, messagesLoading
         )
     }
     return(
-        <div className="dialogs-detail">
+        <div
+            className="dialogs-detail"
+            ref={messagesRef}
+        >
             {messagesItems}
         </div>
     )

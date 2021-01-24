@@ -60,8 +60,8 @@ const dialogs = (state = instanse,action)=>
                 ...state
             }
         case 'NEW_MESSAGE':
-            const { myid, avatar_dir, messageId, name, message} = action.payload;
-            const right = myid === state.mainUserId;
+            const { myId, avatar_dir, messageId, name, message} = action.payload;
+            const right = myId === state.mainUserId;
             const newMessage = {
                 id:messageId,
                 avatar_dir:avatar_dir,
